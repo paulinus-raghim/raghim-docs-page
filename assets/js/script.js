@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const meta = document.createElement('div');
         meta.className = 'doc-meta';
         meta.innerHTML = [
-            '<span class="doc-chip">Platform v2.0.5</span>',
+            '<span class="doc-chip">Platform v2.0.20</span>',
             '<span class="doc-chip">Enterprise Docs</span>',
             '<span class="doc-chip">Updated 2026</span>'
         ].join('');
@@ -346,7 +346,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Console welcome message
     console.log('%cRaghim AI Enterprise Agent Platform', 'color: #2563eb; font-size: 16px; font-weight: bold;');
-    console.log('%cDocumentation v2.0.5', 'color: #64748b; font-size: 12px;');
+    console.log('%cDocumentation v2.0.20', 'color: #64748b; font-size: 12px;');
     console.log('%cBuilt with ❤️ for enterprise AI solutions', 'color: #10b981; font-size: 12px;');
 });
 
