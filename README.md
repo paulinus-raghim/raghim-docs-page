@@ -97,7 +97,7 @@ The Enterprise Agent Platform consists of:
 
 ### Cloud Deployment
 - VastAI integration with SSH tunnels
-- RunPod deployment with GPU support
+- External GPU deployment via a bundled SSH-tunnel service (VastAI, RunPod, or any custom GPU host)
 - AWS EC2 and Google Cloud Platform
 - External GPU support for enhanced performance
 
@@ -203,9 +203,9 @@ For technical support or questions about the documentation:
 
 ## License
 
-This documentation is part of the Raghim AI Enterprise Agent Platform and is licensed under your enterprise agreement.
+This documentation is part of the Raghim AI Enterprise Agent Platform, © 2026 Raghim SARL. All rights reserved. Use is governed by the LICENSE file in this repository and your enterprise agreement with Raghim SARL.
 
 ---
 
-**Raghim AI Enterprise Agent Platform v2.0.5**  
+**Raghim AI Enterprise Agent Platform v2.0.20**  
 *Professional AI-powered document processing and knowledge management platform*
