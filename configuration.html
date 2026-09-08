@@ -98,7 +98,7 @@
                                     </tr>
                                     <tr>
                                         <td><code>LLM_PROVIDER</code></td>
-                                        <td>LLM backend: <code>vllm</code> (on-premise, default) or <code>openai</code> (cloud — document content leaves your infrastructure)</td>
+                                        <td>LLM backend: <code>vllm</code> (on-premise, default) or a managed cloud provider such as <code>openai</code> or <code>anthropic</code> (document content leaves your infrastructure)</td>
                                         <td><code>vllm</code></td>
                                     </tr>
                                     <tr>
@@ -109,7 +109,7 @@
                                     <tr>
                                         <td><code>VLLM_MODEL</code></td>
                                         <td>Model name served by your vLLM instance</td>
-                                        <td><code>mistralai/Mistral-Small-Instruct-2409</code></td>
+                                        <td><code>&lt;self-hosted-model-default&gt;</code></td>
                                     </tr>
                                     <tr>
                                         <td><code>OPENAI_API_KEY</code></td>
@@ -118,8 +118,8 @@
                                     </tr>
                                     <tr>
                                         <td><code>EMBEDDING_MODEL</code></td>
-                                        <td>Sentence-transformer model for embeddings (bundled in image)</td>
-                                        <td><code>BAAI/bge-m3</code></td>
+                                        <td>Multilingual embedding model (bundled in image)</td>
+                                        <td><code>&lt;multilingual-embedding-default&gt;</code></td>
                                     </tr>
                                     <tr>
                                         <td><code>ALLOWED_ORIGINS</code></td>
@@ -185,8 +185,8 @@ POSTGRES_PORT=5432
 DATABASE_URL=postgresql://raghim_user:your-secure-password@postgres:5432/raghim_ai
 
 # Connection pooling (per API replica)
-DB_POOL_SIZE=150
-DB_MAX_OVERFLOW=150
+DB_POOL_SIZE=10
+DB_MAX_OVERFLOW=20
 DB_POOL_TIMEOUT=10
 DB_STATEMENT_TIMEOUT_MS=30000</code></pre>
                             </div>
@@ -198,12 +198,7 @@ DB_STATEMENT_TIMEOUT_MS=30000</code></pre>
                                 <pre><code># Redis configuration
 REDIS_HOST=redis
 REDIS_PORT=6379
-REDIS_PASSWORD=secure_password
-REDIS_DB=0
-
-# Cache settings
-CACHE_TTL=3600
-SESSION_TTL=86400</code></pre>
+REDIS_PASSWORD=secure_password</code></pre>
                             </div>
                         </div>
                     </section>
@@ -220,14 +215,14 @@ LLM_PROVIDER=vllm
 
 # vLLM — self-hosted inference (data stays on your infrastructure)
 VLLM_BASE_URL=http://host.docker.internal:8000
-VLLM_MODEL=mistralai/Mistral-Small-Instruct-2409
+VLLM_MODEL=&lt;self-hosted-model-default&gt;
 
-# OpenAI — cloud inference (document content sent to OpenAI servers)
-# LLM_PROVIDER=openai
+# Managed cloud providers — document content sent to the provider's servers
+# LLM_PROVIDER=openai (or anthropic)
 # OPENAI_API_KEY=your-api-key
 
-# Embeddings (sentence-transformer model bundled in image)
-EMBEDDING_MODEL=BAAI/bge-m3</code></pre>
+# Embeddings (multilingual model bundled in image)
+EMBEDDING_MODEL=&lt;multilingual-embedding-default&gt;</code></pre>
                             </div>
                         </div>
 
@@ -262,13 +257,16 @@ SSO_PROVIDER_NAME=SSO</code></pre>
 
                         <div class="integration-section">
                             <h3 data-translate="configuration.security.access_control">CORS &amp; Cookie Configuration</h3>
-                            <p>IP filtering and rate limiting are handled at the infrastructure/network layer (reverse proxy, firewall) rather than as application environment variables.</p>
+                            <p>IP whitelisting is managed per-user through the application (not an environment variable). Widget-specific rate limits and abuse thresholds are configurable via environment variables.</p>
                             <div class="code-block">
                                 <pre><code># CORS — restrict to your actual domains
 ALLOWED_ORIGINS=https://your-app-domain.com,https://your-api-domain.com
 
 # Widget embedding — only list domains that host your embedded chat widgets
 WIDGET_DOMAINS=https://your-customer-site.com
+
+# Widget rate limiting (abuse protection)
+WIDGET_RATE_LIMIT_IP_PER_MINUTE=&lt;policy-default&gt;
 
 # Auth cookie — must be true when serving over HTTPS
 AUTH_COOKIE_SECURE=true</code></pre>
@@ -343,7 +341,7 @@ LOG_LEVEL=INFO</code></pre>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p data-translate="footer.copyright">&copy; 2026 Raghim AI. All rights reserved. Enterprise Agent Platform v2.0.5</p>
+                <p data-translate="footer.copyright">&copy; 2026 Raghim AI. All rights reserved. Enterprise Agent Platform v2.0.20</p>
             </div>
         </div>
     </footer>

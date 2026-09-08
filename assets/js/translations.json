@@ -27,19 +27,19 @@
     "overview": {
       "title": "System Overview",
       "document_intelligence": "Document Intelligence",
-      "document_intelligence_desc": "Advanced AI-powered document processing supporting PDF, DOCX, TXT, and MD formats with OCR capabilities.",
+      "document_intelligence_desc": "Advanced AI-powered document processing with broad file-format coverage — including office documents, spreadsheets, presentations, Markdown, structured markup, and email files — plus OCR for image-based documents.",
       "knowledge_management": "Knowledge Management",
       "knowledge_management_desc": "Advanced search and retrieval system for enterprise knowledge bases with intelligent content discovery.",
       "multilingual": "Multi-Language Support",
       "multilingual_desc": "Built-in multilingual capabilities with advanced translation and cross-language processing.",
       "enterprise_security": "Enterprise Security",
-      "enterprise_security_desc": "Multi-layered security with RLS, threat detection, banking-grade encryption, and comprehensive compliance."
+      "enterprise_security_desc": "Multi-layered security with role-based access control, threat detection, encrypted credential storage, and comprehensive compliance."
     },
     "capabilities": {
       "title": "Core Capabilities",
       "document_processing": "Document Processing",
       "document_processing_items": {
-        "multi_format": "Multi-format document support (PDF, DOCX, TXT, MD)",
+        "multi_format": "Multi-format document support (office documents, spreadsheets, presentations, Markdown, structured markup, email files)",
         "ocr": "OCR capabilities for scanned documents",
         "extraction": "Intelligent content extraction",
         "analysis": "Advanced document analysis"
@@ -74,10 +74,10 @@
       },
       "banking_solutions": "Banking & Financial Solutions",
       "banking_solutions_items": {
-        "processing": "Banking document processing with encryption",
+        "processing": "Banking and financial document processing",
         "compliance": "financial compliance workflow support",
         "aml": "regulated workflow integration capabilities",
-        "encryption": "Client-side encryption for PII"
+        "encryption": "Automated PII detection before indexing"
       },
       "agent_flows": "Agent Flows & Automation",
       "agent_flows_items": {
@@ -115,14 +115,19 @@
         "jwt": "JWT token authentication",
         "mfa": "Multi-factor authentication (MFA)",
         "sso": "Single Sign-On (SSO) integration",
-        "rls": "Row-Level Security (RLS)"
+        "rls": "Row-Level Security (RLS)",
+        "device_trust": "Device recognition for anomalous login detection"
       },
       "data_protection": "Enterprise Data Protection",
       "data_protection_items": {
         "client_encryption": "Client-side encryption for PII",
         "zero_knowledge": "Zero-knowledge architecture",
         "aes256": "AES-256 encryption at rest",
-        "banking_privacy": "Banking-grade privacy controls"
+        "banking_privacy": "Banking-grade privacy controls",
+        "pii": "Automated PII detection before indexing",
+        "secrets": "Encrypted storage of sensitive credentials",
+        "retention": "Configurable, org-defined data retention policies",
+        "antivirus": "Malware scanning on file uploads"
       },
       "threat_detection": "Threat Detection & Monitoring",
       "threat_detection_items": {
@@ -299,8 +304,8 @@
               "ip": "• IP Whitelisting & Rate Limiting",
               "ddos": "• DDoS Protection & Firewall",
               "cors": "• CORS Configuration",
-              "vpn": "• VPN Detection",
-              "geo": "• Geographic Restrictions"
+              "vpn": "• Widget Domain Restrictions",
+              "geo": "• File Upload Malware Scanning"
             }
           },
           "auth": {
@@ -310,7 +315,7 @@
               "mfa": "• Multi-Factor Authentication (MFA)",
               "sso": "• Single Sign-On (SSO)",
               "rbac": "• Role-Based Access Control (RBAC)",
-              "rls": "• Row-Level Security (RLS)",
+              "rls": "• Device Recognition & Trust",
               "session": "• Session Management"
             }
           },
@@ -321,16 +326,16 @@
               "threat": "• Advanced Threat Detection",
               "struggle": "• AI Struggle Detection",
               "suspicious": "• Suspicious Activity Monitoring",
-              "client_encryption": "• Client-Side Encryption",
-              "zero_knowledge": "• Zero-Knowledge Architecture",
+              "client_encryption": "• Encrypted Credential Storage",
+              "zero_knowledge": "• Prompt Injection Protection",
               "pii": "• PII Detection & Anonymization",
-              "banking": "• Banking Privacy Integration"
+              "banking": "• Banking Document Processing"
             }
           },
           "data": {
             "title": "Data Protection Layer",
             "items": {
-              "aes": "• AES-256 Encryption at Rest",
+              "aes": "• Encrypted Secret Storage",
               "policies": "• Database Security Policies",
               "isolation": "• Multi-Tenant Data Isolation",
               "backup": "• Automated Backup & Recovery",
@@ -379,16 +384,17 @@
         "title": "Cloud Deployment",
         "subtitle": "Deploy on cloud platforms with external GPU support for enhanced performance.",
         "vastai": {
-          "title": "VastAI Deployment",
+          "title": "External GPU Deployment",
           "steps": {
             "instance": {
-              "title": "Create VastAI Instance",
-              "gpu": "Select GPU-enabled instance (RTX 4090 recommended)",
-              "image": "Choose Ubuntu 20.04+ image",
-              "ssh": "Configure SSH access"
+              "title": "Provision a Remote GPU Instance",
+              "gpu": "Works with VastAI, RunPod, or any custom GPU server running the self-hosted inference stack",
+              "image": "Choose a recent Linux image with SSH access",
+              "ssh": "Configure SSH key-based access"
             },
             "ssh": {
-              "title": "Setup SSH Tunnel"
+              "title": "Enable the Bundled GPU Tunnel Service",
+              "desc": "A bundled tunnel service is included for connecting to a remotely hosted GPU inference instance. It is configured entirely through environment variables — no manual scripts required."
             }
           }
         },
@@ -551,7 +557,7 @@
           "items": {
             "totp": "TOTP-based MFA support",
             "sms": "SMS verification options",
-            "email": "Email-based authentication",
+            "email": "Backup recovery codes",
             "hardware": "Hardware token compatibility"
           }
         },
@@ -594,10 +600,10 @@
         "rest": {
           "title": "Data at Rest",
           "items": {
-            "aes": "AES-256 encryption for databases",
-            "storage": "Encrypted file storage",
+            "aes": "Encrypted storage of sensitive credentials and secrets",
+            "storage": "No plaintext secrets at rest",
             "keymgmt": "Secure key management",
-            "hsm": "Hardware security modules"
+            "hsm": "Dedicated encryption keys per secret category"
           }
         },
         "transit": {
@@ -610,12 +616,12 @@
           }
         },
         "client": {
-          "title": "Client-Side Encryption",
+          "title": "Credential & Secret Encryption",
           "items": {
-            "browser": "Browser-based encryption",
-            "e2e": "End-to-end encryption",
-            "zero": "Zero-knowledge architecture",
-            "keys": "Client key management"
+            "browser": "OAuth tokens and connector credentials encrypted at rest",
+            "e2e": "Configurable, environment-scoped encryption keys",
+            "zero": "Explicit failure over silent plaintext fallback",
+            "keys": "Per-organization secret isolation"
           }
         },
         "keys": {
@@ -623,8 +629,8 @@
           "items": {
             "rotation": "Automated key rotation",
             "storage": "Secure key storage",
-            "escrow": "Key escrow services",
-            "recovery": "Backup key recovery"
+            "escrow": "Keys configured per-environment, never checked into code",
+            "recovery": "Fallback keys supported for migration continuity"
           }
         }
       },
@@ -639,7 +645,8 @@
           "whitelist": "IP Whitelisting: Restrict access to specific IP ranges",
           "geo": "Geographic Restrictions: Block access from certain countries",
           "vpn": "VPN Detection: Detect and block VPN traffic",
-          "rate": "Rate Limiting: Prevent abuse and DDoS attacks"
+          "rate": "<strong>Rate Limiting:</strong> Prevent abuse and DDoS attacks",
+          "widget": "<strong>Widget Domain Restrictions:</strong> Restrict embeddable widgets to approved domains"
         },
         "cors": {
           "title": "CORS Configuration"
@@ -696,8 +703,8 @@
               "ip": "• IP Whitelisting & Rate Limiting",
               "ddos": "• DDoS Protection & Firewall",
               "cors": "• CORS Configuration",
-              "vpn": "• VPN Detection",
-              "geo": "• Geographic Restrictions"
+              "vpn": "• Widget Domain Restrictions",
+              "geo": "• File Upload Malware Scanning"
             }
           },
           "auth": {
@@ -707,7 +714,7 @@
               "mfa": "• Multi-Factor Authentication (MFA)",
               "sso": "• Single Sign-On (SSO)",
               "rbac": "• Role-Based Access Control (RBAC)",
-              "rls": "• Row-Level Security (RLS)",
+              "rls": "• Device Recognition & Trust",
               "session": "• Session Management"
             }
           },
@@ -718,16 +725,16 @@
               "threat": "• Advanced Threat Detection",
               "struggle": "• AI Struggle Detection",
               "suspicious": "• Suspicious Activity Monitoring",
-              "client_encryption": "• Client-Side Encryption",
-              "zero_knowledge": "• Zero-Knowledge Architecture",
+              "client_encryption": "• Encrypted Credential Storage",
+              "zero_knowledge": "• Prompt Injection Protection",
               "pii": "• PII Detection & Anonymization",
-              "banking": "• Banking Privacy Integration"
+              "banking": "• Banking Document Processing"
             }
           },
           "data": {
             "title": "Data Protection Layer",
             "items": {
-              "aes": "• AES-256 Encryption at Rest",
+              "aes": "• Encrypted Secret Storage",
               "policies": "• Database Security Policies",
               "isolation": "• Multi-Tenant Data Isolation",
               "backup": "• Automated Backup & Recovery",
@@ -744,8 +751,8 @@
         "overview": {
           "title": "Security Layer Overview",
           "external": "External Access Layer: Network security, DDoS protection, and access controls",
-          "auth": "Authentication & Authorization: Multi-factor authentication, RBAC, and RLS",
-          "app": "Application Security: Threat detection, encryption, and PII protection",
+          "auth": "<strong>Authentication & Authorization:</strong> Multi-factor authentication, RBAC, and device trust",
+          "app": "<strong>Application Security:</strong> Threat detection, credential encryption, and PII protection",
           "data": "Data Protection: Encryption at rest, audit logging, and compliance",
           "compliance": "Compliance Standards: Regulatory compliance and industry standards"
         }
@@ -754,12 +761,12 @@
         "title": "Advanced Security Features",
         "subtitle": "Enterprise-grade security capabilities for regulated industries.",
         "rls": {
-          "title": "Row-Level Security (RLS)",
+          "title": "External Database Connector Security",
           "items": {
-            "isolation": "Multi-tenant data isolation",
-            "policies": "Dynamic access control policies",
-            "filtering": "Tenant-specific data filtering",
-            "boundaries": "E-commerce security boundaries"
+            "isolation": "Row-level security enforcement on connected customer databases",
+            "policies": "Scoped, read-limited query access",
+            "filtering": "Per-tenant query isolation",
+            "boundaries": "Application-level multi-tenant data isolation"
           }
         },
         "threat": {
@@ -772,12 +779,12 @@
           }
         },
         "banking": {
-          "title": "Banking-Grade Encryption",
+          "title": "Banking & Financial Document Processing",
           "items": {
-            "client": "Client-side encryption for PII",
-            "zero": "Zero-knowledge architecture",
+            "client": "Automated PII detection before indexing",
+            "zero": "Document-template based processing workflows",
             "anonymized": "Anonymized data storage",
-            "privacy": "Banking privacy integration"
+            "privacy": "Regulated-workflow integration support"
           }
         },
         "database": {
@@ -829,7 +836,7 @@
         },
         "retention": {
           "title": "Data Retention & Governance",
-          "block": "# Configurable retention policies\n- User data: 7 years (configurable)\n- Audit logs: 3 years (regulatory minimum)\n- Document data: Per organization policy\n- Temporary files: 30 days\n- PII data: Per consent agreement\n- Banking data: Per regulatory requirements"
+          "block": "# Configurable retention policies\n- Retention windows are organization-configurable\n- Default consent-based retention is short-lived (hours, not years)\n- Document data: Per organization policy\n- Temporary processing files: auto-purged\n- PII data: Per consent agreement\n- Banking data: Per regulatory requirements"
         }
       },
       "testing": {
@@ -905,7 +912,11 @@
         "user_management": "User Management",
         "user_management_desc": "Manage users and permissions",
         "analytics": "Analytics",
-        "analytics_desc": "Access usage and performance data"
+        "analytics_desc": "Access usage and performance data",
+        "connectors": "External Connectors",
+        "connectors_desc": "OAuth-based connections to third-party cloud storage and SaaS sources",
+        "billing": "Billing",
+        "billing_desc": "Subscription tier, credit balance, and billing-portal access"
       },
       "widget_embedding": {
         "title": "Widget Embedding",
@@ -1007,7 +1018,7 @@
         "subtitle": "Configure your Raghim AI Enterprise system for your environment.",
         "env_vars": "Environment Variables",
         "admin_setup": "Admin User Setup",
-        "admin_setup_desc": "A default administrator account is created automatically during first boot by the database initialisation script."
+        "admin_setup_desc": "A default administrator account is created automatically during first boot. A random password is generated at deployment time and written to your environment configuration and a local secrets file — it is never a fixed default."
       },
       "first_steps": {
         "title": "First Steps",
@@ -1020,7 +1031,7 @@
         "login_desc": "Use your admin credentials to log into the system.",
         "upload": "Upload Documents",
         "upload_desc": "Upload your first documents to start building your knowledge base.",
-        "supported_formats": "Supported formats: PDF, DOCX, TXT, MD",
+        "supported_formats": "Supported formats: office documents, spreadsheets, presentations, Markdown, structured markup, and email files",
         "ocr_support": "OCR support for scanned documents",
         "auto_extraction": "Automatic content extraction",
         "test_queries": "Test AI Queries",
@@ -1147,7 +1158,10 @@
         "conversations": "Conversations",
         "sso": "SSO",
         "compliance_consent": "Compliance & Consent",
-        "license": "License"
+        "license": "License",
+        "connectors": "External Connectors",
+        "approvals": "Approval Workflows",
+        "billing": "Billing"
       },
       "authentication": {
         "title": "Authentication",
@@ -1186,7 +1200,7 @@
         "title": "Banking Integration",
         "subtitle": "Specialized endpoints for financial document processing.",
         "process_desc": "Process banking documents with encryption",
-        "upload_desc": "Upload encrypted banking documents"
+        "upload_desc": "Upload banking and financial documents for processing"
       },
       "admin": {
         "title": "Admin Functions",
@@ -1245,7 +1259,7 @@
       },
       "organizations": {
         "title": "Organizations",
-        "subtitle": "Multi-tenant organization management, member invites, and role assignment."
+        "subtitle": "Multi-tenant organization management, member invites, role assignment, and team sub-grouping."
       },
       "collections_mgmt": {
         "title": "Collections Management",
@@ -1266,6 +1280,18 @@
       "license": {
         "title": "License",
         "subtitle": "Check platform license status and active feature entitlements."
+      },
+      "connectors": {
+        "title": "External Connectors",
+        "subtitle": "OAuth-based connections to third-party cloud storage and SaaS data sources."
+      },
+      "approvals": {
+        "title": "Approval Workflows",
+        "subtitle": "Approval policies and pending-request queues for gating sensitive automated actions."
+      },
+      "billing": {
+        "title": "Billing",
+        "subtitle": "Subscription tier, credit balance, and billing-portal access."
       }
     },
     "troubleshooting": {
@@ -1646,7 +1672,7 @@
           "log_analysis_label": "Log Analysis:",
           "log_analysis": "Regular log review and analysis",
           "worker_label": "Worker monitoring:",
-          "worker": "Monitor the rag-worker container alongside core services — document processing failures surface here first",
+          "worker": "Monitor the raghim-worker container alongside core services — document processing failures surface here first",
           "connector_label": "Connector service health:",
           "connector": "Periodically verify all connector service containers are running; failures here cause agent flow tool calls to fail silently"
         },
@@ -1704,19 +1730,19 @@
     "overview": {
       "title": "Aperçu du Système",
       "document_intelligence": "Intelligence Documentaire",
-      "document_intelligence_desc": "Traitement avancé de documents alimenté par l'IA prenant en charge les formats PDF, DOCX, TXT et MD avec capacités OCR.",
+      "document_intelligence_desc": "Traitement de documents avancé propulsé par l'IA, avec une large couverture de formats de fichiers — y compris documents bureautiques, tableurs, présentations, Markdown, balisage structuré et fichiers e-mail — ainsi que l'OCR pour les documents basés sur des images.",
       "knowledge_management": "Gestion des Connaissances",
       "knowledge_management_desc": "Système de recherche et récupération avancé pour les bases de connaissances d'entreprise avec découverte intelligente de contenu.",
       "multilingual": "Support Multilingue",
       "multilingual_desc": "Capacités multilingues intégrées avec traduction avancée et traitement interlangues.",
       "enterprise_security": "Sécurité Entreprise",
-      "enterprise_security_desc": "Sécurité multicouche avec RLS, détection de menaces, chiffrement de niveau bancaire et conformité complète."
+      "enterprise_security_desc": "Sécurité multicouche avec contrôle d'accès basé sur les rôles, détection des menaces, stockage chiffré des identifiants et conformité complète."
     },
     "capabilities": {
       "title": "Capacités Principales",
       "document_processing": "Traitement de Documents",
       "document_processing_items": {
-        "multi_format": "Support multi-format de documents (PDF, DOCX, TXT, MD)",
+        "multi_format": "Prise en charge multi-format des documents (documents bureautiques, tableurs, présentations, Markdown, balisage structuré, fichiers e-mail)",
         "ocr": "Capacités OCR pour documents scannés",
         "extraction": "Extraction intelligente de contenu",
         "analysis": "Analyse avancée de documents"
@@ -1751,10 +1777,10 @@
       },
       "banking_solutions": "Solutions Bancaires et Financières",
       "banking_solutions_items": {
-        "processing": "Traitement de documents bancaires avec chiffrement",
+        "processing": "Traitement de documents bancaires et financiers",
         "compliance": "Conformité Basel III, MiFID II, FATCA",
         "aml": "Capacités d'intégration AML/KYC",
-        "encryption": "Chiffrement côté client pour les PII"
+        "encryption": "Détection automatisée des données personnelles avant indexation"
       },
       "agent_flows": "Agent Flows & Automation",
       "agent_flows_items": {
@@ -1792,14 +1818,19 @@
         "jwt": "Authentification par token JWT",
         "mfa": "Authentification multi-facteurs (MFA)",
         "sso": "Intégration Single Sign-On (SSO)",
-        "rls": "Sécurité au niveau des lignes (RLS)"
+        "rls": "Sécurité au niveau des lignes (RLS)",
+        "device_trust": "Reconnaissance des appareils pour la détection de connexions anormales"
       },
       "data_protection": "Protection des Données Entreprise",
       "data_protection_items": {
         "client_encryption": "Chiffrement côté client pour les PII",
         "zero_knowledge": "Architecture zéro connaissance",
         "aes256": "Chiffrement AES-256 au repos",
-        "banking_privacy": "Contrôles de confidentialité de niveau bancaire"
+        "banking_privacy": "Contrôles de confidentialité de niveau bancaire",
+        "pii": "Détection automatisée des données personnelles avant indexation",
+        "secrets": "Stockage chiffré des identifiants sensibles",
+        "retention": "Politiques de rétention des données configurables, définies par l'organisation",
+        "antivirus": "Analyse antivirus des fichiers téléversés"
       },
       "threat_detection": "Détection et Surveillance des Menaces",
       "threat_detection_items": {
@@ -1976,8 +2007,8 @@
               "ip": "• Liste blanche d'IP et limitation de débit",
               "ddos": "• Protection DDoS et pare-feu",
               "cors": "• Configuration CORS",
-              "vpn": "• Détection VPN",
-              "geo": "• Restrictions géographiques"
+              "vpn": "• Restrictions de domaine des widgets",
+              "geo": "• Analyse antivirus des fichiers téléversés"
             }
           },
           "auth": {
@@ -1987,7 +2018,7 @@
               "mfa": "• Authentification multi-facteurs (MFA)",
               "sso": "• Single Sign-On (SSO)",
               "rbac": "• Contrôle d'accès basé sur les rôles (RBAC)",
-              "rls": "• Sécurité au niveau des lignes (RLS)",
+              "rls": "• Reconnaissance et confiance des appareils",
               "session": "• Gestion de session"
             }
           },
@@ -1998,16 +2029,16 @@
               "threat": "• Détection avancée des menaces",
               "struggle": "• Détection de lutte de l'IA",
               "suspicious": "• Surveillance des activités suspectes",
-              "client_encryption": "• Chiffrement côté client",
-              "zero_knowledge": "• Architecture zéro connaissance",
+              "client_encryption": "• Stockage chiffré des identifiants",
+              "zero_knowledge": "• Protection contre l'injection de prompt",
               "pii": "• Détection et anonymisation des PII",
-              "banking": "• Intégration de confidentialité bancaire"
+              "banking": "• Traitement de documents bancaires"
             }
           },
           "data": {
             "title": "Couche de Protection des Données",
             "items": {
-              "aes": "• Chiffrement AES-256 au repos",
+              "aes": "• Stockage chiffré des secrets",
               "policies": "• Politiques de sécurité de base de données",
               "isolation": "• Isolation des données multi-locataires",
               "backup": "• Sauvegarde et restauration automatisées",
@@ -2056,16 +2087,17 @@
         "title": "Déploiement Cloud",
         "subtitle": "Déployez sur des plateformes cloud avec support GPU externe pour des performances accrues.",
         "vastai": {
-          "title": "Déploiement VastAI",
+          "title": "Déploiement GPU externe",
           "steps": {
             "instance": {
-              "title": "Créer une Instance VastAI",
-              "gpu": "Sélectionnez une instance compatible GPU (RTX 4090 recommandée)",
-              "image": "Choisissez une image Ubuntu 20.04+",
-              "ssh": "Configurez l'accès SSH"
+              "title": "Provisionner une instance GPU distante",
+              "gpu": "Compatible avec VastAI, RunPod, ou tout serveur GPU personnalisé exécutant la pile d'inférence auto-hébergée",
+              "image": "Choisissez une image Linux récente avec accès SSH",
+              "ssh": "Configurez l'accès par clé SSH"
             },
             "ssh": {
-              "title": "Configurer un Tunnel SSH"
+              "title": "Activer le service de tunnel GPU intégré",
+              "desc": "Un service de tunnel intégré permet de se connecter à une instance d'inférence GPU hébergée à distance. Il se configure entièrement via des variables d'environnement — aucun script manuel requis."
             }
           }
         },
@@ -2228,7 +2260,7 @@
           "items": {
             "totp": "Prise en charge MFA basée sur TOTP",
             "sms": "Options de vérification par SMS",
-            "email": "Authentification par email",
+            "email": "Codes de récupération de secours",
             "hardware": "Compatibilité des jetons matériels"
           }
         },
@@ -2271,10 +2303,10 @@
         "rest": {
           "title": "Données au Repos",
           "items": {
-            "aes": "Chiffrement AES-256 pour les bases de données",
-            "storage": "Stockage de fichiers chiffrés",
+            "aes": "Stockage chiffré des identifiants et secrets sensibles",
+            "storage": "Aucun secret en clair au repos",
             "keymgmt": "Gestion sécurisée des clés",
-            "hsm": "Modules matériels de sécurité"
+            "hsm": "Clés de chiffrement dédiées par catégorie de secret"
           }
         },
         "transit": {
@@ -2287,12 +2319,12 @@
           }
         },
         "client": {
-          "title": "Chiffrement Côté Client",
+          "title": "Chiffrement des Identifiants et Secrets",
           "items": {
-            "browser": "Chiffrement côté navigateur",
-            "e2e": "Chiffrement de bout en bout",
-            "zero": "Architecture zéro connaissance",
-            "keys": "Gestion des clés côté client"
+            "browser": "Jetons OAuth et identifiants de connecteurs chiffrés au repos",
+            "e2e": "Clés de chiffrement configurables, propres à chaque environnement",
+            "zero": "Échec explicite plutôt qu'un repli silencieux en clair",
+            "keys": "Isolation des secrets par organisation"
           }
         },
         "keys": {
@@ -2300,8 +2332,8 @@
           "items": {
             "rotation": "Rotation automatique des clés",
             "storage": "Stockage sécurisé des clés",
-            "escrow": "Services d'entiercement de clés",
-            "recovery": "Récupération des clés de sauvegarde"
+            "escrow": "Clés configurées par environnement, jamais intégrées au code",
+            "recovery": "Clés de secours prises en charge pour la continuité lors des migrations"
           }
         }
       },
@@ -2316,7 +2348,8 @@
           "whitelist": "Liste blanche IP : Restreindre l'accès à des plages IP spécifiques",
           "geo": "Restrictions Géographiques : Bloquer l'accès depuis certains pays",
           "vpn": "Détection VPN : Détecter et bloquer le trafic VPN",
-          "rate": "Limitation de Débit : Prévenir les abus et attaques DDoS"
+          "rate": "<strong>Limitation de débit :</strong> Prévenir les abus et attaques DDoS",
+          "widget": "<strong>Restrictions de domaine des widgets :</strong> Limiter les widgets intégrables aux domaines approuvés"
         },
         "cors": {
           "title": "Configuration CORS"
@@ -2373,8 +2406,8 @@
               "ip": "• Liste blanche d'IP et limitation de débit",
               "ddos": "• Protection DDoS et pare-feu",
               "cors": "• Configuration CORS",
-              "vpn": "• Détection VPN",
-              "geo": "• Restrictions géographiques"
+              "vpn": "• Restrictions de domaine des widgets",
+              "geo": "• Analyse antivirus des fichiers téléversés"
             }
           },
           "auth": {
@@ -2384,7 +2417,7 @@
               "mfa": "• Authentification multi-facteurs (MFA)",
               "sso": "• Single Sign-On (SSO)",
               "rbac": "• Contrôle d'accès basé sur les rôles (RBAC)",
-              "rls": "• Sécurité au niveau des lignes (RLS)",
+              "rls": "• Reconnaissance et confiance des appareils",
               "session": "• Gestion de session"
             }
           },
@@ -2395,16 +2428,16 @@
               "threat": "• Détection avancée des menaces",
               "struggle": "• Détection de lutte de l'IA",
               "suspicious": "• Surveillance des activités suspectes",
-              "client_encryption": "• Chiffrement côté client",
-              "zero_knowledge": "• Architecture zéro connaissance",
+              "client_encryption": "• Stockage chiffré des identifiants",
+              "zero_knowledge": "• Protection contre l'injection de prompt",
               "pii": "• Détection et anonymisation des PII",
-              "banking": "• Intégration de confidentialité bancaire"
+              "banking": "• Traitement de documents bancaires"
             }
           },
           "data": {
             "title": "Couche de Protection des Données",
             "items": {
-              "aes": "• Chiffrement AES-256 au repos",
+              "aes": "• Stockage chiffré des secrets",
               "policies": "• Politiques de sécurité de base de données",
               "isolation": "• Isolation des données multi-locataires",
               "backup": "• Sauvegarde et restauration automatisées",
@@ -2421,8 +2454,8 @@
         "overview": {
           "title": "Aperçu de la Couche de Sécurité",
           "external": "Couche d'Accès Externe : Sécurité réseau, protection DDoS et contrôles d'accès",
-          "auth": "Authentification et Autorisation : MFA, RBAC et RLS",
-          "app": "Sécurité Applicative : Détection des menaces, chiffrement et protection PII",
+          "auth": "<strong>Authentification et autorisation :</strong> Authentification multifacteur, RBAC et confiance des appareils",
+          "app": "<strong>Sécurité applicative :</strong> Détection des menaces, chiffrement des identifiants et protection des données personnelles",
           "data": "Protection des Données : Chiffrement au repos, audit et conformité",
           "compliance": "Standards de Conformité : Conformité réglementaire et normes industrielles"
         }
@@ -2431,12 +2464,12 @@
         "title": "Fonctionnalités de Sécurité Avancée",
         "subtitle": "Capacités de sécurité de niveau entreprise pour les industries réglementées.",
         "rls": {
-          "title": "Sécurité au Niveau des Lignes (RLS)",
+          "title": "Sécurité des connecteurs de bases de données externes",
           "items": {
-            "isolation": "Isolation des données multi-locataires",
-            "policies": "Politiques de contrôle d'accès dynamiques",
-            "filtering": "Filtrage des données spécifique aux locataires",
-            "boundaries": "Frontières de sécurité e-commerce"
+            "isolation": "Application de la sécurité au niveau des lignes sur les bases de données clientes connectées",
+            "policies": "Accès aux requêtes limité et circonscrit",
+            "filtering": "Isolation des requêtes par client",
+            "boundaries": "Isolation multi-tenant des données au niveau applicatif"
           }
         },
         "threat": {
@@ -2449,12 +2482,12 @@
           }
         },
         "banking": {
-          "title": "Chiffrement de Niveau Bancaire",
+          "title": "Traitement de documents bancaires et financiers",
           "items": {
-            "client": "Chiffrement côté client pour les PII",
-            "zero": "Architecture zéro connaissance",
+            "client": "Détection automatisée des données personnelles avant indexation",
+            "zero": "Flux de traitement basés sur des modèles de documents",
             "anonymized": "Stockage de données anonymisées",
-            "privacy": "Intégration de confidentialité bancaire"
+            "privacy": "Prise en charge de l'intégration de flux réglementés"
           }
         },
         "database": {
@@ -2492,6 +2525,9 @@
           "status": {
             "compliant": "✅ Conforme"
           }
+        },
+        "retention": {
+          "block": "# Politiques de rétention configurables\n- Les durées de rétention sont configurables par organisation\n- La rétention par défaut basée sur le consentement est de courte durée (heures, pas années)\n- Données documentaires : selon la politique de l'organisation\n- Fichiers de traitement temporaires : purgés automatiquement\n- Données personnelles : selon l'accord de consentement\n- Données bancaires : selon les exigences réglementaires"
         }
       },
       "testing": {
@@ -2582,7 +2618,11 @@
         "user_management": "Gestion des Utilisateurs",
         "user_management_desc": "Gérer les utilisateurs et les permissions",
         "analytics": "Analytiques",
-        "analytics_desc": "Accéder aux données d'utilisation et de performance"
+        "analytics_desc": "Accéder aux données d'utilisation et de performance",
+        "connectors": "Connecteurs externes",
+        "connectors_desc": "Connexions basées sur OAuth vers des sources cloud et SaaS tierces",
+        "billing": "Facturation",
+        "billing_desc": "Niveau d'abonnement, solde de crédits et accès au portail de facturation"
       },
       "widget_embedding": {
         "title": "Intégration de Widget",
@@ -2684,7 +2724,7 @@
         "subtitle": "Configurez votre système Raghim AI Entreprise pour votre environnement.",
         "env_vars": "Variables d'Environnement",
         "admin_setup": "Configuration Utilisateur Admin",
-        "admin_setup_desc": "A default administrator account is created automatically during first boot by the database initialisation script."
+        "admin_setup_desc": "Un compte administrateur par défaut est créé automatiquement au premier démarrage. Un mot de passe aléatoire est généré au moment du déploiement et écrit dans votre configuration d'environnement et un fichier de secrets local — ce n'est jamais une valeur fixe par défaut."
       },
       "first_steps": {
         "title": "Premiers Pas",
@@ -2697,7 +2737,7 @@
         "login_desc": "Utilisez vos identifiants admin pour vous connecter au système.",
         "upload": "Téléverser des Documents",
         "upload_desc": "Téléversez vos premiers documents pour commencer à construire votre base de connaissances.",
-        "supported_formats": "Formats pris en charge : PDF, DOCX, TXT, MD",
+        "supported_formats": "Formats pris en charge : documents bureautiques, tableurs, présentations, Markdown, balisage structuré et fichiers e-mail",
         "ocr_support": "Support OCR pour documents scannés",
         "auto_extraction": "Extraction automatique de contenu",
         "test_queries": "Tester les Requêtes IA",
@@ -2824,7 +2864,10 @@
         "conversations": "Conversations",
         "sso": "SSO",
         "compliance_consent": "Compliance & Consent",
-        "license": "License"
+        "license": "License",
+        "connectors": "Connecteurs externes",
+        "approvals": "Flux d'approbation",
+        "billing": "Facturation"
       },
       "authentication": {
         "title": "Authentification",
@@ -2863,7 +2906,7 @@
         "title": "Intégration Bancaire",
         "subtitle": "Endpoints spécialisés pour le traitement de documents financiers.",
         "process_desc": "Traiter les documents bancaires avec chiffrement",
-        "upload_desc": "Téléverser des documents bancaires chiffrés"
+        "upload_desc": "Téléverser des documents bancaires et financiers pour traitement"
       },
       "admin": {
         "title": "Fonctions Admin",
@@ -2922,7 +2965,7 @@
       },
       "organizations": {
         "title": "Organizations",
-        "subtitle": "Multi-tenant organization management, member invites, and role assignment."
+        "subtitle": "Gestion multi-tenant des organisations, invitations de membres, attribution de rôles et sous-groupes d'équipe."
       },
       "collections_mgmt": {
         "title": "Collections Management",
@@ -2943,6 +2986,18 @@
       "license": {
         "title": "License",
         "subtitle": "Check platform license status and active feature entitlements."
+      },
+      "connectors": {
+        "title": "Connecteurs externes",
+        "subtitle": "Connexions basées sur OAuth vers des sources de stockage cloud et SaaS tierces."
+      },
+      "approvals": {
+        "title": "Flux d'approbation",
+        "subtitle": "Politiques d'approbation et files d'attente pour encadrer les actions automatisées sensibles."
+      },
+      "billing": {
+        "title": "Facturation",
+        "subtitle": "Niveau d'abonnement, solde de crédits et accès au portail de facturation."
       }
     },
     "troubleshooting": {
@@ -3323,7 +3378,7 @@
           "log_analysis_label": "Analyse des Logs :",
           "log_analysis": "Révision et analyse régulières des logs",
           "worker_label": "Worker monitoring:",
-          "worker": "Monitor the rag-worker container alongside core services — document processing failures surface here first",
+          "worker": "Surveillez le conteneur raghim-worker en plus des services principaux — les échecs de traitement des documents apparaissent ici en premier",
           "connector_label": "Connector service health:",
           "connector": "Periodically verify all connector service containers are running; failures here cause agent flow tool calls to fail silently"
         },

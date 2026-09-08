@@ -53,7 +53,7 @@
                         <li><a href="#database-issues" data-translate="troubleshooting.toc.database_issues">Database Issues</a></li>
                         <li><a href="#gpu-issues" data-translate="troubleshooting.toc.gpu_issues">GPU Issues</a></li>
                         <li><a href="#authentication-issues" data-translate="troubleshooting.toc.authentication_issues">Authentication Issues</a></li>
-                        <li><a href="#connection-issues" data-translate="troubleshooting.toc.connector_issues">Connector Issues</a></li>
+                        <li><a href="#connector-issues" data-translate="troubleshooting.toc.connector_issues">Connector Issues</a></li>
                         <li><a href="#diagnostic-tools" data-translate="troubleshooting.toc.diagnostic_tools">Diagnostic Tools</a></li>
                     </ul>
                 </nav>
@@ -85,7 +85,7 @@
                                 <div class="solution">
                                     <h4 data-translate="troubleshooting.solutions">Solutions:</h4>
                                     <ul>
-                                        <li>Check backend container status: <code>docker logs rag-backend</code></li>
+                                        <li>Check backend container status: <code>docker logs raghim-backend</code></li>
                                         <li>Verify database connections</li>
                                         <li>Check resource limits (CPU/Memory)</li>
                                         <li>Restart backend service</li>
@@ -100,7 +100,7 @@
                                 <div class="solution">
                                     <h4 data-translate="troubleshooting.solutions">Solutions:</h4>
                                     <ul>
-                                        <li>Check WebSocket endpoint: <code>ws://localhost:8000/ws</code></li>
+                                        <li>Check the live-chat WebSocket connection in your browser's network tab</li>
                                         <li>Verify proxy configuration in Nginx</li>
                                         <li>Check browser console for WebSocket errors</li>
                                         <li>Ensure WebSocket support in browser</li>
@@ -109,7 +109,7 @@
                                 </div>
                             </div>
 
-                            <div class="issue-card">
+                            <div class="issue-card" id="connector-issues">
                                 <h3>Workflow Connector Service Unavailable</h3>
                                 <p><strong>Symptoms:</strong> Agent flows using external connectors fail, time out, or return connector errors</p>
                                 <div class="solution">
@@ -140,8 +140,8 @@
                                         <li>Enable GPU acceleration: <code>LLM_PROVIDER=&lt;approved-provider&gt;</code></li>
                                         <li>Check GPU availability: <code>nvidia-smi</code></li>
                                         <li>Reduce model size or use quantized models</li>
-                                        <li>Increase <code>OPENAI_RAG_REASONING_EFFORT</code></li>
-                                        <li>Pre-load models: <code>ollama pull model-name</code></li>
+                                        <li>Lower <code>OPENAI_RAG_REASONING_EFFORT</code> — higher effort trades speed for accuracy</li>
+                                        <li>Pre-load self-hosted models before serving traffic</li>
                                     </ul>
                                 </div>
                             </div>
@@ -233,10 +233,10 @@
                                 <div class="solution">
                                     <h4>Solutions:</h4>
                                     <ul>
-                                        <li>Check worker container: <code>docker logs rag-worker</code></li>
-                                        <li>Verify worker is running: <code>docker ps | grep rag-worker</code></li>
+                                        <li>Check worker container: <code>docker logs raghim-worker</code></li>
+                                        <li>Verify worker is running: <code>docker ps | grep raghim-worker</code></li>
                                         <li>Check Redis connectivity from worker (Celery uses Redis as broker)</li>
-                                        <li>Restart worker: <code>docker restart rag-worker</code></li>
+                                        <li>Restart worker: <code>docker restart raghim-worker</code></li>
                                         <li>Verify embedding model availability in worker logs</li>
                                         <li>Check available disk space: <code>df -h</code></li>
                                     </ul>
@@ -255,7 +255,7 @@
                                 <div class="solution">
                                     <h4 data-translate="troubleshooting.solutions">Solutions:</h4>
                                     <ul>
-                                        <li>Check PostgreSQL container: <code>docker logs rag-postgres</code></li>
+                                        <li>Check PostgreSQL container: <code>docker logs raghim-postgres</code></li>
                                         <li>Verify database credentials in .env</li>
                                         <li>Check database initialization</li>
                                         <li>Verify network connectivity</li>
@@ -270,7 +270,7 @@
                                 <div class="solution">
                                     <h4 data-translate="troubleshooting.solutions">Solutions:</h4>
                                     <ul>
-                                        <li>Check Redis container: <code>docker logs rag-redis</code></li>
+                                        <li>Check Redis container: <code>docker logs raghim-redis</code></li>
                                         <li>Verify Redis password configuration</li>
                                         <li>Check Redis memory usage</li>
                                         <li>Restart Redis container</li>
@@ -285,11 +285,11 @@
                                 <div class="solution">
                                     <h4 data-translate="troubleshooting.solutions">Solutions:</h4>
                                     <ul>
-                                        <li>pgvector runs inside PostgreSQL — check: <code>docker logs rag-postgres</code></li>
-                                        <li>Verify PostgreSQL is healthy: <code>docker ps | grep rag-postgres</code></li>
+                                        <li>pgvector runs inside PostgreSQL — check: <code>docker logs raghim-postgres</code></li>
+                                        <li>Verify PostgreSQL is healthy: <code>docker ps | grep raghim-postgres</code></li>
                                         <li>Check pgvector extension is installed: connect to the database and run <code>SELECT * FROM pg_extension WHERE extname = 'vector';</code></li>
                                         <li>Verify embedding model is loaded and accessible</li>
-                                        <li>Check collection initialisation in the backend logs: <code>docker logs rag-backend</code></li>
+                                        <li>Check collection initialisation in the backend logs: <code>docker logs raghim-backend</code></li>
                                         <li>Note: there is no separate vector database container — pgvector is part of the PostgreSQL service</li>
                                     </ul>
                                 </div>
@@ -406,8 +406,8 @@
                                         <li>Verify <code>SSO_ENABLED=true</code> is set in .env</li>
                                         <li>Check <code>SSO_OIDC_DISCOVERY_URL</code> is reachable from inside the backend container</li>
                                         <li>Confirm <code>SSO_CLIENT_ID</code> and <code>SSO_CLIENT_SECRET</code> match your identity provider settings</li>
-                                        <li>Ensure the redirect URI registered in your IdP matches: <code>&lt;API_URL&gt;/api/sso/callback</code></li>
-                                        <li>Review backend logs for OIDC errors: <code>docker logs rag-backend</code></li>
+                                        <li>Ensure the redirect URI registered in your IdP matches the platform's SSO callback route</li>
+                                        <li>Review backend logs for OIDC errors: <code>docker logs raghim-backend</code></li>
                                         <li>Verify your IdP is accessible from the server network (not blocked by firewall)</li>
                                     </ul>
                                 </div>
@@ -535,7 +535,7 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p data-translate="footer.copyright">&copy; 2026 Raghim AI. All rights reserved. Enterprise Agent Platform v2.0.5</p>
+                <p data-translate="footer.copyright">&copy; 2026 Raghim AI. All rights reserved. Enterprise Agent Platform v2.0.20</p>
             </div>
         </div>
     </footer>

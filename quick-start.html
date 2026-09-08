@@ -160,13 +160,13 @@ API_URL=https://&lt;api-domain&gt;</code></pre>
 
                         <div class="integration-section">
                             <h3 data-translate="quick_start.configuration.admin_setup">Default Administrator Account</h3>
-                            <p data-translate="quick_start.configuration.admin_setup_desc">A default administrator account is created automatically during first boot by the database initialisation script.</p>
+                            <p data-translate="quick_start.configuration.admin_setup_desc">A default administrator account is created automatically during first boot. A random password is generated at deployment time and written to your environment configuration and a local secrets file — it is never a fixed default.</p>
                             <div class="code-block">
                                 <pre><code>Username: admin
-Password: admin (temporary — you will be required to change this on first login)</code></pre>
+Password: &lt;generated at deployment time — see your .env / secrets output&gt;</code></pre>
                             </div>
                             <div class="warning-box" style="margin-top:1rem;">
-                                <strong>Security:</strong> Log in with the default credentials immediately after deployment and set a strong password. The system enforces a mandatory password change on first login and will not grant access until it is completed. Do not leave the default credentials in place on any internet-facing or production system.
+                                <strong>Security:</strong> Retrieve the generated password from your deployment output immediately after deployment, log in, and set your own password. The system enforces a mandatory password change on first login and will not grant access until it is completed.
                             </div>
                         </div>
                     </section>
@@ -206,7 +206,7 @@ Password: admin (temporary — you will be required to change this on first logi
                                     <h3 data-translate="quick_start.first_steps.upload">Upload Documents</h3>
                                     <p data-translate="quick_start.first_steps.upload_desc">Upload your first documents to start building your knowledge base.</p>
                                     <ul>
-                                        <li data-translate="quick_start.first_steps.supported_formats">Supported formats: PDF, DOCX, TXT, MD</li>
+                                        <li data-translate="quick_start.first_steps.supported_formats">Supported formats: office documents, spreadsheets, presentations, Markdown, structured markup, and email files</li>
                                         <li data-translate="quick_start.first_steps.ocr_support">OCR support for scanned documents</li>
                                         <li data-translate="quick_start.first_steps.auto_extraction">Automatic content extraction</li>
                                     </ul>
@@ -309,7 +309,7 @@ curl -I https://&lt;app-domain&gt;</code></pre>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p data-translate="footer.copyright">&copy; 2026 Raghim AI. All rights reserved. Enterprise Agent Platform v2.0.5</p>
+                <p data-translate="footer.copyright">&copy; 2026 Raghim AI. All rights reserved. Enterprise Agent Platform v2.0.20</p>
             </div>
         </div>
     </footer>

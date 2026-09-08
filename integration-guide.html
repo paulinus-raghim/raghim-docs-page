@@ -98,6 +98,14 @@
                                     <h4 data-translate="integration_guide.api_integration.analytics">Analytics</h4>
                                     <p data-translate="integration_guide.api_integration.analytics_desc">Access usage and performance data</p>
                                 </div>
+                                <div class="api-category">
+                                    <h4 data-translate="integration_guide.api_integration.connectors">External Connectors</h4>
+                                    <p data-translate="integration_guide.api_integration.connectors_desc">OAuth-based connections to third-party cloud storage and SaaS sources</p>
+                                </div>
+                                <div class="api-category">
+                                    <h4 data-translate="integration_guide.api_integration.billing">Billing</h4>
+                                    <p data-translate="integration_guide.api_integration.billing_desc">Subscription tier, credit balance, and billing-portal access</p>
+                                </div>
                             </div>
                         </div>
                     </section>
@@ -108,33 +116,16 @@
 
                         <div class="integration-section">
                             <h3 data-translate="integration_guide.widget_embedding.basic">Basic Widget Embedding</h3>
+                            <p>Each widget is generated from the Admin → Widgets interface, which produces a self-contained embed snippet keyed to that widget's configuration. Paste the generated snippet into your page — no separate script initialization required.</p>
                             <div class="code-block">
-                                <pre><code>&lt;script src="https://&lt;your-domain&gt;/widget.js"&gt;&lt;/script&gt;
-&lt;script&gt;
-  RaghimAI.init({
-    apiUrl: 'https://&lt;your-domain&gt;/api',
-    widgetId: 'your-widget-id'
-  });
-&lt;/script&gt;</code></pre>
+                                <pre><code>&lt;!-- Illustrative only: generated snippet from Admin -&gt; Widgets -&gt; Embed Code --&gt;
+&lt;!-- note: "Actual markup and options are versioned per deployment profile" --&gt;</code></pre>
                             </div>
                         </div>
 
                         <div class="integration-section">
                             <h3 data-translate="integration_guide.widget_embedding.custom_styling">Custom Styling</h3>
-                            <div class="code-block">
-                                <pre><code>&lt;script&gt;
-  RaghimAI.init({
-    apiUrl: 'https://&lt;your-domain&gt;/api',
-    widgetId: 'your-widget-id',
-    theme: 'dark',
-    position: 'bottom-right',
-    customCSS: {
-      primaryColor: '#2563eb',
-      borderRadius: '8px'
-    }
-  });
-&lt;/script&gt;</code></pre>
-                            </div>
+                            <p>Widget theme, position, and color options are configured in the Admin → Widgets interface and are baked into the generated embed snippet — no client-side JavaScript configuration is needed.</p>
                         </div>
                     </section>
 
@@ -146,13 +137,13 @@
                         <div class="integration-section">
                             <h3 data-translate="integration_guide.authentication.jwt">JWT Token Authentication</h3>
                             <div class="code-block">
-                                <pre><code># Login to get token
-curl -X POST https://&lt;your-domain&gt;/api/auth/login \
+                                <pre><code># Login to get token (illustrative)
+curl -X POST https://&lt;your-domain&gt;/api/&lt;login-operation&gt; \
   -H "Content-Type: application/json" \
-  -d '{"username": "your-username", "password": "your-password"}'
+  -d '{"note": "Detailed schema available in approved technical onboarding"}'
 
 # Use token in subsequent requests
-curl -X GET https://&lt;your-domain&gt;/api/documents/collections \
+curl -X GET https://&lt;your-domain&gt;/api/documents/&lt;collection-operation&gt; \
   -H "Authorization: Bearer YOUR_JWT_TOKEN"</code></pre>
                             </div>
                         </div>
@@ -184,6 +175,7 @@ curl -X GET https://&lt;your-domain&gt;/api/documents/collections \
                                 <li>Route flow outputs to external services and APIs</li>
                                 <li>Synchronise data between external systems and document collections</li>
                             </ul>
+                            <p>Separately, OAuth-based external connectors are available for linking third-party cloud storage and SaaS data sources, configured through the same <strong>Admin → Integrations</strong> interface.</p>
                         </div>
 
                         <div class="integration-section">
@@ -210,7 +202,7 @@ curl -X GET https://&lt;your-domain&gt;/api/documents/collections \
                             <p>Agent flows can be triggered via the REST API, on a schedule, or by events within the connector layer. Flows support conditional branching, human approval steps, and multi-step tool execution.</p>
                             <div class="code-block">
                                 <pre><code># Trigger an agent flow via API (illustrative)
-POST /api/agent/flows/&lt;flow-id&gt;/run
+POST /api/agent/flows/&lt;flow-id&gt;/&lt;start-operation&gt;
 Authorization: Bearer YOUR_JWT_TOKEN
 Content-Type: application/json
 
@@ -305,7 +297,7 @@ response = requests.post(f'{api_url}/chat',
                 </div>
             </div>
             <div class="footer-bottom">
-                <p data-translate="footer.copyright">&copy; 2026 Raghim AI. All rights reserved. Enterprise Agent Platform v2.0.5</p>
+                <p data-translate="footer.copyright">&copy; 2026 Raghim AI. All rights reserved. Enterprise Agent Platform v2.0.20</p>
             </div>
         </div>
     </footer>

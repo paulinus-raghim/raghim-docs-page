@@ -83,7 +83,7 @@
                                 <h3 data-translate="security_guide.authentication.mfa.title">Multi-Factor Authentication</h3>
                                 <ul>
                                     <li data-translate="security_guide.authentication.mfa.items.totp">TOTP-based MFA support</li>
-                                    <li data-translate="security_guide.authentication.mfa.items.email">Email-based authentication</li>
+                                    <li data-translate="security_guide.authentication.mfa.items.email">Backup recovery codes</li>
                                     <li>Additional MFA methods available on the product roadmap</li>
                                 </ul>
                             </div>
@@ -149,10 +149,10 @@
                             <div class="security-card">
                                 <h3 data-translate="security_guide.encryption.rest.title">Data at Rest</h3>
                                 <ul>
-                                    <li data-translate="security_guide.encryption.rest.items.aes">AES-256 encryption for databases</li>
-                                    <li data-translate="security_guide.encryption.rest.items.storage">Encrypted file storage</li>
+                                    <li data-translate="security_guide.encryption.rest.items.aes">Encrypted storage of sensitive credentials and secrets</li>
+                                    <li data-translate="security_guide.encryption.rest.items.storage">No plaintext secrets at rest</li>
                                     <li data-translate="security_guide.encryption.rest.items.keymgmt">Secure key management</li>
-                                    <li data-translate="security_guide.encryption.rest.items.hsm">Hardware security modules</li>
+                                    <li data-translate="security_guide.encryption.rest.items.hsm">Dedicated encryption keys per secret category</li>
                                 </ul>
                             </div>
 
@@ -161,28 +161,26 @@
                                 <ul>
                                     <li data-translate="security_guide.encryption.transit.items.tls">TLS 1.3 encryption</li>
                                     <li data-translate="security_guide.encryption.transit.items.https">HTTPS enforcement</li>
-                                    <li data-translate="security_guide.encryption.transit.items.pinning">Certificate pinning</li>
                                     <li data-translate="security_guide.encryption.transit.items.api">Secure API communication</li>
                                 </ul>
                             </div>
 
                             <div class="security-card">
-                                <h3 data-translate="security_guide.encryption.client.title">Client-Side Encryption</h3>
+                                <h3 data-translate="security_guide.encryption.client.title">Credential & Secret Encryption</h3>
                                 <ul>
-                                    <li data-translate="security_guide.encryption.client.items.browser">Browser-based encryption</li>
-                                    <li data-translate="security_guide.encryption.client.items.e2e">End-to-end encryption</li>
-                                    <li data-translate="security_guide.encryption.client.items.zero">Zero-knowledge architecture</li>
-                                    <li data-translate="security_guide.encryption.client.items.keys">Client key management</li>
+                                    <li data-translate="security_guide.encryption.client.items.browser">OAuth tokens and connector credentials encrypted at rest</li>
+                                    <li data-translate="security_guide.encryption.client.items.e2e">Configurable, environment-scoped encryption keys</li>
+                                    <li data-translate="security_guide.encryption.client.items.zero">Explicit failure over silent plaintext fallback</li>
+                                    <li data-translate="security_guide.encryption.client.items.keys">Per-organization secret isolation</li>
                                 </ul>
                             </div>
 
                             <div class="security-card">
                                 <h3 data-translate="security_guide.encryption.keys.title">Key Management</h3>
                                 <ul>
-                                    <li data-translate="security_guide.encryption.keys.items.rotation">Automated key rotation</li>
                                     <li data-translate="security_guide.encryption.keys.items.storage">Secure key storage</li>
-                                    <li data-translate="security_guide.encryption.keys.items.escrow">Key escrow services</li>
-                                    <li data-translate="security_guide.encryption.keys.items.recovery">Backup key recovery</li>
+                                    <li data-translate="security_guide.encryption.keys.items.escrow">Keys configured per-environment, never checked into code</li>
+                                    <li data-translate="security_guide.encryption.keys.items.recovery">Fallback keys supported for migration continuity</li>
                                 </ul>
                             </div>
                         </div>
@@ -207,9 +205,8 @@
                             <h3 data-translate="security_guide.network.ip_controls.title">IP Access Controls</h3>
                             <ul>
                                 <li data-translate="security_guide.network.ip_controls.whitelist"><strong>IP Whitelisting:</strong> Restrict access to specific IP ranges</li>
-                                <li data-translate="security_guide.network.ip_controls.geo"><strong>Geographic Restrictions:</strong> Block access from certain countries</li>
-                                <li data-translate="security_guide.network.ip_controls.vpn"><strong>VPN Detection:</strong> Detect and block VPN traffic</li>
                                 <li data-translate="security_guide.network.ip_controls.rate"><strong>Rate Limiting:</strong> Prevent abuse and DDoS attacks</li>
+                                <li data-translate="security_guide.network.ip_controls.widget"><strong>Widget Domain Restrictions:</strong> Restrict embeddable widgets to approved domains</li>
                             </ul>
                         </div>
 
@@ -288,8 +285,8 @@ Access-Control-Max-Age: 86400</code></pre>
                                         </div>
                                         <div class="arch-right">
                                             <p data-translate="security_guide.architecture.layers.external.items.cors">• CORS Configuration</p>
-                                            <p data-translate="security_guide.architecture.layers.external.items.vpn">• VPN Detection</p>
-                                            <p data-translate="security_guide.architecture.layers.external.items.geo">• Geographic Restrictions</p>
+                                            <p data-translate="security_guide.architecture.layers.external.items.vpn">• Widget Domain Restrictions</p>
+                                            <p data-translate="security_guide.architecture.layers.external.items.geo">• File Upload Malware Scanning</p>
                                         </div>
                                     </div>
                                 </div>
@@ -304,7 +301,7 @@ Access-Control-Max-Age: 86400</code></pre>
                                         </div>
                                         <div class="arch-right">
                                             <p data-translate="security_guide.architecture.layers.auth.items.rbac">• Role-Based Access Control (RBAC)</p>
-                                            <p data-translate="security_guide.architecture.layers.auth.items.rls">• Row-Level Security (RLS)</p>
+                                            <p data-translate="security_guide.architecture.layers.auth.items.rls">• Device Recognition & Trust</p>
                                             <p data-translate="security_guide.architecture.layers.auth.items.session">• Session Management</p>
                                         </div>
                                     </div>
@@ -320,10 +317,10 @@ Access-Control-Max-Age: 86400</code></pre>
                                             <p data-translate="security_guide.architecture.layers.app.items.suspicious">• Suspicious Activity Monitoring</p>
                                         </div>
                                         <div class="arch-right">
-                                            <p data-translate="security_guide.architecture.layers.app.items.client_encryption">• Client-Side Encryption</p>
-                                            <p data-translate="security_guide.architecture.layers.app.items.zero_knowledge">• Zero-Knowledge Architecture</p>
+                                            <p data-translate="security_guide.architecture.layers.app.items.client_encryption">• Encrypted Credential Storage</p>
+                                            <p data-translate="security_guide.architecture.layers.app.items.zero_knowledge">• Prompt Injection Protection</p>
                                             <p data-translate="security_guide.architecture.layers.app.items.pii">• PII Detection & Anonymization</p>
-                                            <p data-translate="security_guide.architecture.layers.app.items.banking">• Banking Privacy Integration</p>
+                                            <p data-translate="security_guide.architecture.layers.app.items.banking">• Banking Document Processing</p>
                                         </div>
                                     </div>
                                 </div>
@@ -332,7 +329,7 @@ Access-Control-Max-Age: 86400</code></pre>
                                     <h4 data-translate="security_guide.architecture.layers.data.title">Data Protection Layer</h4>
                                     <div class="arch-content">
                                         <div class="arch-left">
-                                            <p data-translate="security_guide.architecture.layers.data.items.aes">• AES-256 Encryption at Rest</p>
+                                            <p data-translate="security_guide.architecture.layers.data.items.aes">• Encrypted Secret Storage</p>
                                             <p data-translate="security_guide.architecture.layers.data.items.policies">• Database Security Policies</p>
                                             <p data-translate="security_guide.architecture.layers.data.items.isolation">• Multi-Tenant Data Isolation</p>
                                             <p data-translate="security_guide.architecture.layers.data.items.backup">• Automated Backup & Recovery</p>
@@ -349,7 +346,7 @@ Access-Control-Max-Age: 86400</code></pre>
                                 <div class="arch-layer compliance-layer">
                                     <h4 data-translate="security_guide.architecture.layers.compliance.title">Compliance & Standards</h4>
                                     <div class="arch-content">
-                                        <p>GDPR • CCPA • HIPAA • SOX • PCI DSS • ISO 27001 • SOC 2 • NIST • GDPR • CCPA • HIPAA • SOX • PCI DSS • ISO 27001 • SOC 2 • NIST</p>
+                                        <p>GDPR • CCPA • HIPAA • SOX • PCI DSS • ISO 27001 • SOC 2 • NIST</p>
                                     </div>
                                 </div>
                             </div>
@@ -359,8 +356,8 @@ Access-Control-Max-Age: 86400</code></pre>
                             <h3 data-translate="security_guide.architecture.overview.title">Security Layer Overview</h3>
                             <ul>
                                 <li data-translate="security_guide.architecture.overview.external"><strong>External Access Layer:</strong> Network security, DDoS protection, and access controls</li>
-                                <li data-translate="security_guide.architecture.overview.auth"><strong>Authentication & Authorization:</strong> Multi-factor authentication, RBAC, and RLS</li>
-                                <li data-translate="security_guide.architecture.overview.app"><strong>Application Security:</strong> Threat detection, encryption, and PII protection</li>
+                                <li data-translate="security_guide.architecture.overview.auth"><strong>Authentication & Authorization:</strong> Multi-factor authentication, RBAC, and device trust</li>
+                                <li data-translate="security_guide.architecture.overview.app"><strong>Application Security:</strong> Threat detection, credential encryption, and PII protection</li>
                                 <li data-translate="security_guide.architecture.overview.data"><strong>Data Protection:</strong> Encryption at rest, audit logging, and compliance</li>
                                 <li data-translate="security_guide.architecture.overview.compliance"><strong>Compliance Standards:</strong> Regulatory compliance and industry standards</li>
                             </ul>
@@ -373,12 +370,12 @@ Access-Control-Max-Age: 86400</code></pre>
 
                         <div class="security-grid">
                             <div class="security-card">
-                                <h3 data-translate="security_guide.advanced.rls.title">Row-Level Security (RLS)</h3>
+                                <h3 data-translate="security_guide.advanced.rls.title">External Database Connector Security</h3>
                                 <ul>
-                                    <li data-translate="security_guide.advanced.rls.items.isolation">Multi-tenant data isolation</li>
-                                    <li data-translate="security_guide.advanced.rls.items.policies">Dynamic access control policies</li>
-                                    <li data-translate="security_guide.advanced.rls.items.filtering">Tenant-specific data filtering</li>
-                                    <li data-translate="security_guide.advanced.rls.items.boundaries">E-commerce security boundaries</li>
+                                    <li data-translate="security_guide.advanced.rls.items.isolation">Row-level security enforcement on connected customer databases</li>
+                                    <li data-translate="security_guide.advanced.rls.items.policies">Scoped, read-limited query access</li>
+                                    <li data-translate="security_guide.advanced.rls.items.filtering">Per-tenant query isolation</li>
+                                    <li data-translate="security_guide.advanced.rls.items.boundaries">Application-level multi-tenant data isolation</li>
                                 </ul>
                             </div>
 
@@ -395,12 +392,12 @@ Access-Control-Max-Age: 86400</code></pre>
                             </div>
 
                             <div class="security-card">
-                                <h3 data-translate="security_guide.advanced.banking.title">Banking-Grade Encryption</h3>
+                                <h3 data-translate="security_guide.advanced.banking.title">Banking & Financial Document Processing</h3>
                                 <ul>
-                                    <li data-translate="security_guide.advanced.banking.items.client">Client-side encryption for PII</li>
-                                    <li data-translate="security_guide.advanced.banking.items.zero">Zero-knowledge architecture</li>
+                                    <li data-translate="security_guide.advanced.banking.items.client">Automated PII detection before indexing</li>
+                                    <li data-translate="security_guide.advanced.banking.items.zero">Document-template based processing workflows</li>
                                     <li data-translate="security_guide.advanced.banking.items.anonymized">Anonymized data storage</li>
-                                    <li data-translate="security_guide.advanced.banking.items.privacy">Banking privacy integration</li>
+                                    <li data-translate="security_guide.advanced.banking.items.privacy">Regulated-workflow integration support</li>
                                 </ul>
                             </div>
 
@@ -511,10 +508,10 @@ Access-Control-Max-Age: 86400</code></pre>
                             <h3 data-translate="security_guide.compliance.retention.title">Data Retention & Governance</h3>
                             <div class="code-block">
                                 <pre><code data-translate="security_guide.compliance.retention.block"># Configurable retention policies
-- User data: 7 years (configurable)
-- Audit logs: 3 years (regulatory minimum)
+- Retention windows are organization-configurable
+- Default consent-based retention is short-lived (hours, not years)
 - Document data: Per organization policy
-- Temporary files: 30 days
+- Temporary processing files: auto-purged
 - PII data: Per consent agreement
 - Banking data: Per regulatory requirements</code></pre>
                             </div>
@@ -598,7 +595,7 @@ Access-Control-Max-Age: 86400</code></pre>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2026 Raghim AI. All rights reserved. Enterprise Agent Platform v2.0.5</p>
+                <p>&copy; 2026 Raghim AI. All rights reserved. Enterprise Agent Platform v2.0.20</p>
             </div>
         </div>
     </footer>

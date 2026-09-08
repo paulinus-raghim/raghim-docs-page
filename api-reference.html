@@ -40,13 +40,9 @@
             </div>
 
             <div class="warning-box" style="margin-top:1.5rem;">
-                            <strong>API Accuracy Note:</strong> Treat this page as an implementation guide.
-                            For strict route truth, validate against backend OpenAPI and runtime responses in your environment.
-                        </div>
-
-            <div class="warning-box" style="margin-top:1rem;">
-                <strong>Confidentiality Notice:</strong> Documentation intentionally abstracts implementation specifics
-                to protect proprietary architecture and reduce direct reproducibility risk.
+                <strong>Note:</strong> Treat this page as an implementation guide, not a strict route reference —
+                validate against backend OpenAPI and runtime responses in your environment. Documentation intentionally
+                abstracts implementation specifics to protect proprietary architecture.
             </div>
 
             <div class="content-grid">
@@ -68,6 +64,9 @@
                         <li><a href="#organizations" data-translate="api_reference.toc.organizations">Organizations</a></li>
                         <li><a href="#collections-mgmt" data-translate="api_reference.toc.collections_mgmt">Collections</a></li>
                         <li><a href="#conversations" data-translate="api_reference.toc.conversations">Conversations</a></li>
+                        <li><a href="#connectors" data-translate="api_reference.toc.connectors">External Connectors</a></li>
+                        <li><a href="#approvals" data-translate="api_reference.toc.approvals">Approval Workflows</a></li>
+                        <li><a href="#billing" data-translate="api_reference.toc.billing">Billing</a></li>
                         <li><a href="#sso" data-translate="api_reference.toc.sso">SSO</a></li>
                         <li><a href="#compliance-consent" data-translate="api_reference.toc.compliance_consent">Compliance & Consent</a></li>
                         <li><a href="#license" data-translate="api_reference.toc.license">License</a></li>
@@ -141,6 +140,25 @@
                                     </div>
                                 </div>
                             </div>
+
+                            <div class="endpoint-card">
+                                <div class="endpoint-header">
+                                    <span class="method post">POST</span>
+                                    <span class="path">/api/auth/&lt;mfa-verify-operation&gt;</span>
+                                </div>
+                                <div class="endpoint-description">
+                                    <p>Verify a multi-factor authentication code and complete login</p>
+                                </div>
+                                <div class="endpoint-body">
+                                    <h4 data-translate="api_reference.authentication.request_body">Request Body:</h4>
+                                    <div class="code-block">
+                                        <pre><code>{
+  "note": "Detailed schema available in approved technical onboarding",
+  "stability": "Versioned per deployment profile"
+}</code></pre>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </section>
 
@@ -162,10 +180,10 @@
                                     <div class="code-block">
                                         <pre><code>Content-Type: multipart/form-data
 
-FormData:
-- files: File[]
-- collection_name: string (optional)
-- chunk_strategy: string (optional)</code></pre>
+{
+  "note": "Detailed schema available in approved technical onboarding",
+  "stability": "Versioned per deployment profile"
+}</code></pre>
                                     </div>
                                     <h4 data-translate="api_reference.authentication.response">Response:</h4>
                                     <div class="code-block">
@@ -242,9 +260,10 @@ FormData:
                                     </div>
                                     <h4 data-translate="api_reference.chat.response_streaming">Response (Streaming):</h4>
                                     <div class="code-block">
-                                        <pre><code>data: {"type": "content", "content": "partial response"}
-data: {"type": "sources", "sources": [...]}
-data: {"type": "done", "message": "complete"}</code></pre>
+                                        <pre><code>{
+  "note": "Server-sent event stream; detailed schema available in approved technical onboarding",
+  "stability": "Versioned per deployment profile"
+}</code></pre>
                                     </div>
                                 </div>
                             </div>
@@ -363,17 +382,17 @@ data: {"type": "done", "message": "complete"}</code></pre>
                                     <span class="path">/api/banking/&lt;upload-operation&gt;</span>
                                 </div>
                                 <div class="endpoint-description">
-                                    <p data-translate="api_reference.banking.upload_desc">Upload encrypted banking documents</p>
+                                    <p data-translate="api_reference.banking.upload_desc">Upload banking and financial documents for processing</p>
                                 </div>
                                 <div class="endpoint-body">
                                     <h4 data-translate="api_reference.documents.request">Request:</h4>
                                     <div class="code-block">
                                         <pre><code>Content-Type: multipart/form-data
 
-FormData:
-- files: File[]
-- encryption_key: string
-- document_type: string</code></pre>
+{
+  "note": "Detailed schema available in approved technical onboarding",
+  "stability": "Versioned per deployment profile"
+}</code></pre>
                                     </div>
                                 </div>
                             </div>
@@ -590,9 +609,11 @@ FormData:
                                     <h4 data-translate="api_reference.documents.request">Request:</h4>
                                     <div class="code-block">
                                         <pre><code>Content-Type: multipart/form-data
-FormData:
-- audio: File (audio recording)
-- language: string (optional)</code></pre>
+
+{
+  "note": "Detailed schema available in approved technical onboarding",
+  "stability": "Versioned per deployment profile"
+}</code></pre>
                                     </div>
                                 </div>
                             </div>
@@ -656,7 +677,7 @@ FormData:
 
                     <section id="organizations">
                         <h2 data-translate="api_reference.organizations.title">Organizations</h2>
-                        <p data-translate="api_reference.organizations.subtitle">Multi-tenant organization management, member invites, and role assignment.</p>
+                        <p data-translate="api_reference.organizations.subtitle">Multi-tenant organization management, member invites, role assignment, and team sub-grouping.</p>
 
                         <div class="endpoint-group">
                             <div class="endpoint-card">
@@ -749,6 +770,106 @@ FormData:
                                 </div>
                                 <div class="endpoint-description">
                                     <p>Delete a conversation and its message history</p>
+                                </div>
+                            </div>
+
+                            <div class="endpoint-card">
+                                <div class="endpoint-header">
+                                    <span class="method post">POST</span>
+                                    <span class="path">/api/conversations/&lt;feedback-operation&gt;</span>
+                                </div>
+                                <div class="endpoint-description">
+                                    <p>Capture a user rating or correction on an AI response</p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="connectors">
+                        <h2 data-translate="api_reference.connectors.title">External Connectors</h2>
+                        <p data-translate="api_reference.connectors.subtitle">OAuth-based connections to third-party cloud storage and SaaS data sources.</p>
+
+                        <div class="endpoint-group">
+                            <div class="endpoint-card">
+                                <div class="endpoint-header">
+                                    <span class="method get">GET</span>
+                                    <span class="path">/api/connectors/&lt;list-operation&gt;</span>
+                                </div>
+                                <div class="endpoint-description">
+                                    <p>List configured external connectors for an organization</p>
+                                </div>
+                            </div>
+
+                            <div class="endpoint-card">
+                                <div class="endpoint-header">
+                                    <span class="method post">POST</span>
+                                    <span class="path">/api/connectors/&lt;authorize-operation&gt;</span>
+                                </div>
+                                <div class="endpoint-description">
+                                    <p>Begin an OAuth authorization flow for a supported connector</p>
+                                </div>
+                                <div class="endpoint-body">
+                                    <h4 data-translate="api_reference.authentication.response">Response:</h4>
+                                    <div class="code-block">
+                                        <pre><code>{
+  "note": "Detailed schema available in approved technical onboarding",
+  "stability": "Versioned per deployment profile"
+}</code></pre>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="approvals">
+                        <h2 data-translate="api_reference.approvals.title">Approval Workflows</h2>
+                        <p data-translate="api_reference.approvals.subtitle">Approval policies and pending-request queues for gating sensitive automated actions.</p>
+
+                        <div class="endpoint-group">
+                            <div class="endpoint-card">
+                                <div class="endpoint-header">
+                                    <span class="method get">GET</span>
+                                    <span class="path">/api/approvals/&lt;list-operation&gt;</span>
+                                </div>
+                                <div class="endpoint-description">
+                                    <p>List pending approval requests</p>
+                                </div>
+                            </div>
+
+                            <div class="endpoint-card">
+                                <div class="endpoint-header">
+                                    <span class="method post">POST</span>
+                                    <span class="path">/api/approvals/&lt;decision-operation&gt;</span>
+                                </div>
+                                <div class="endpoint-description">
+                                    <p>Approve or reject a pending action</p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="billing">
+                        <h2 data-translate="api_reference.billing.title">Billing</h2>
+                        <p data-translate="api_reference.billing.subtitle">Subscription tier, credit balance, and billing-portal access.</p>
+
+                        <div class="endpoint-group">
+                            <div class="endpoint-card">
+                                <div class="endpoint-header">
+                                    <span class="method get">GET</span>
+                                    <span class="path">/api/billing/&lt;status-operation&gt;</span>
+                                </div>
+                                <div class="endpoint-description">
+                                    <p>Retrieve current subscription tier and credit balance</p>
+                                </div>
+                            </div>
+
+                            <div class="endpoint-card">
+                                <div class="endpoint-header">
+                                    <span class="method post">POST</span>
+                                    <span class="path">/api/billing/&lt;portal-operation&gt;</span>
+                                </div>
+                                <div class="endpoint-description">
+                                    <p>Generate a billing-portal access link</p>
                                 </div>
                             </div>
                         </div>
@@ -911,7 +1032,7 @@ FormData:
                 </div>
             </div>
             <div class="footer-bottom">
-                <p data-translate="footer.copyright">&copy; 2026 Raghim AI. All rights reserved. Enterprise Agent Platform v2.0.5</p>
+                <p data-translate="footer.copyright">&copy; 2026 Raghim AI. All rights reserved. Enterprise Agent Platform v2.0.20</p>
             </div>
         </div>
     </footer>

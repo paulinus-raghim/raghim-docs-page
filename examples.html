@@ -263,42 +263,16 @@ curl -X POST https://&lt;your-domain&gt;/api/chat \
 
                         <div class="integration-section">
                             <h3 data-translate="examples.widget.basic_widget">Basic Widget</h3>
+                            <p>Each widget is generated from the Admin → Widgets interface, which produces a self-contained embed snippet keyed to that widget's configuration. Paste the generated snippet into your page as-is — no separate initialization script is required.</p>
                             <div class="code-block">
-                                <pre><code>&lt;!-- Include widget script --&gt;
-&lt;script src="https://&lt;your-domain&gt;/widget.js"&gt;&lt;/script&gt;
-
-&lt;!-- Initialize widget --&gt;
-&lt;script&gt;
-  RaghimAI.init({
-    apiUrl: 'https://&lt;your-domain&gt;/api',
-    widgetId: 'your-widget-id',
-    theme: 'light',
-    position: 'bottom-right'
-  });
-&lt;/script&gt;</code></pre>
+                                <pre><code>&lt;!-- Illustrative only: paste the generated snippet from Admin -&gt; Widgets -&gt; Embed Code --&gt;
+&lt;!-- note: "Actual markup is versioned per deployment profile" --&gt;</code></pre>
                             </div>
                         </div>
 
                         <div class="integration-section">
                             <h3 data-translate="examples.widget.custom_styled_widget">Custom Styled Widget</h3>
-                            <div class="code-block">
-                                <pre><code>&lt;script&gt;
-  RaghimAI.init({
-    apiUrl: 'https://&lt;your-domain&gt;/api',
-    widgetId: 'your-widget-id',
-    theme: 'dark',
-    position: 'bottom-left',
-    customCSS: {
-      primaryColor: '#2563eb',
-      borderRadius: '12px',
-      fontFamily: 'Inter, sans-serif'
-    },
-    onMessage: function(message) {
-      console.log('New message:', message);
-    }
-  });
-&lt;/script&gt;</code></pre>
-                            </div>
+                            <p>Theme, position, colors, and font are configured in the Admin → Widgets interface and are baked into the generated embed snippet — no client-side JavaScript configuration is needed.</p>
                         </div>
                     </section>
 
@@ -425,7 +399,7 @@ curl -X GET https://&lt;your-domain&gt;/api/mcp-tools/&lt;list-operation&gt; \
                 </div>
             </div>
             <div class="footer-bottom">
-                <p data-translate="footer.copyright">&copy; 2026 Raghim AI. All rights reserved. Enterprise Agent Platform v2.0.5</p>
+                <p data-translate="footer.copyright">&copy; 2026 Raghim AI. All rights reserved. Enterprise Agent Platform v2.0.20</p>
             </div>
         </div>
     </footer>

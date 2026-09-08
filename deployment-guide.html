@@ -101,8 +101,8 @@
                                         </div>
                                         <div class="arch-right">
                                             <p data-translate="deployment_guide.architecture.layers.external.items.cors">• CORS Configuration</p>
-                                            <p data-translate="deployment_guide.architecture.layers.external.items.vpn">• VPN Detection</p>
-                                            <p data-translate="deployment_guide.architecture.layers.external.items.geo">• Geographic Restrictions</p>
+                                            <p data-translate="deployment_guide.architecture.layers.external.items.vpn">• Widget Domain Restrictions</p>
+                                            <p data-translate="deployment_guide.architecture.layers.external.items.geo">• File Upload Malware Scanning</p>
                                         </div>
                                     </div>
                                 </div>
@@ -117,7 +117,7 @@
                                         </div>
                                         <div class="arch-right">
                                             <p data-translate="deployment_guide.architecture.layers.auth.items.rbac">• Role-Based Access Control (RBAC)</p>
-                                            <p data-translate="deployment_guide.architecture.layers.auth.items.rls">• Row-Level Security (RLS)</p>
+                                            <p data-translate="deployment_guide.architecture.layers.auth.items.rls">• Device Recognition & Trust</p>
                                             <p data-translate="deployment_guide.architecture.layers.auth.items.session">• Session Management</p>
                                         </div>
                                     </div>
@@ -133,10 +133,10 @@
                                             <p data-translate="deployment_guide.architecture.layers.app.items.suspicious">• Suspicious Activity Monitoring</p>
                                         </div>
                                         <div class="arch-right">
-                                            <p data-translate="deployment_guide.architecture.layers.app.items.client_encryption">• Client-Side Encryption</p>
-                                            <p data-translate="deployment_guide.architecture.layers.app.items.zero_knowledge">• Zero-Knowledge Architecture</p>
+                                            <p data-translate="deployment_guide.architecture.layers.app.items.client_encryption">• Encrypted Credential Storage</p>
+                                            <p data-translate="deployment_guide.architecture.layers.app.items.zero_knowledge">• Prompt Injection Protection</p>
                                             <p data-translate="deployment_guide.architecture.layers.app.items.pii">• PII Detection & Anonymization</p>
-                                            <p data-translate="deployment_guide.architecture.layers.app.items.banking">• Banking Privacy Integration</p>
+                                            <p data-translate="deployment_guide.architecture.layers.app.items.banking">• Banking Document Processing</p>
                                         </div>
                                     </div>
                                 </div>
@@ -145,7 +145,7 @@
                                     <h4 data-translate="deployment_guide.architecture.layers.data.title">Data Protection Layer</h4>
                                     <div class="arch-content">
                                         <div class="arch-left">
-                                            <p data-translate="deployment_guide.architecture.layers.data.items.aes">• AES-256 Encryption at Rest</p>
+                                            <p data-translate="deployment_guide.architecture.layers.data.items.aes">• Encrypted Secret Storage</p>
                                             <p data-translate="deployment_guide.architecture.layers.data.items.policies">• Database Security Policies</p>
                                             <p data-translate="deployment_guide.architecture.layers.data.items.isolation">• Multi-Tenant Data Isolation</p>
                                             <p data-translate="deployment_guide.architecture.layers.data.items.backup">• Automated Backup & Recovery</p>
@@ -162,7 +162,7 @@
                                 <div class="arch-layer compliance-layer">
                                     <h4 data-translate="deployment_guide.architecture.layers.compliance.title">Compliance & Standards</h4>
                                     <div class="arch-content">
-                                        <p>GDPR • CCPA • HIPAA • SOX • PCI DSS • ISO 27001 • SOC 2 • NIST • GDPR • CCPA • HIPAA • SOX • PCI DSS • ISO 27001 • SOC 2 • NIST</p>
+                                        <p>GDPR • CCPA • HIPAA • SOX • PCI DSS • ISO 27001 • SOC 2 • NIST</p>
                                     </div>
                                 </div>
                             </div>
@@ -192,8 +192,8 @@
                                     <p data-translate="deployment_guide.offline.steps.download.desc">Download the offline enterprise package from your Raghim AI representative.</p>
                                     <div class="code-block">
                                         <pre><code># Extract the package
-tar -xzf rag-enterprise-2.0.5-offline-managed-local.tar.gz
-cd rag-enterprise-2.0.5-offline-managed-local</code></pre>
+tar -xzf rag-enterprise-2.0.20-offline-managed-local.tar.gz
+cd rag-enterprise-2.0.20-offline-managed-local</code></pre>
                                     </div>
                                 </div>
                             </div>
@@ -239,54 +239,27 @@ cd rag-enterprise-2.0.5-offline-managed-local</code></pre>
 
                         <div class="cloud-options">
                             <div class="cloud-card">
-                                <h3 data-translate="deployment_guide.cloud.vastai.title">VastAI Deployment</h3>
+                                <h3 data-translate="deployment_guide.cloud.vastai.title">External GPU Deployment</h3>
                                 <div class="deployment-steps">
                                     <div class="step">
                                         <div class="step-number">1</div>
                                         <div class="step-content">
-                                            <h4 data-translate="deployment_guide.cloud.vastai.steps.instance.title">Create VastAI Instance</h4>
+                                            <h4 data-translate="deployment_guide.cloud.vastai.steps.instance.title">Provision a Remote GPU Instance</h4>
                                             <ul>
-                                                <li data-translate="deployment_guide.cloud.vastai.steps.instance.gpu">Select GPU-enabled instance (RTX 4090 recommended)</li>
-                                                <li data-translate="deployment_guide.cloud.vastai.steps.instance.image">Choose Ubuntu 20.04+ image</li>
-                                                <li data-translate="deployment_guide.cloud.vastai.steps.instance.ssh">Configure SSH access</li>
+                                                <li data-translate="deployment_guide.cloud.vastai.steps.instance.gpu">Works with VastAI, RunPod, or any custom GPU server running the self-hosted inference stack</li>
+                                                <li data-translate="deployment_guide.cloud.vastai.steps.instance.image">Choose a recent Linux image with SSH access</li>
+                                                <li data-translate="deployment_guide.cloud.vastai.steps.instance.ssh">Configure SSH key-based access</li>
                                             </ul>
                                         </div>
                                     </div>
                                     <div class="step">
                                         <div class="step-number">2</div>
                                         <div class="step-content">
-                                            <h4 data-translate="deployment_guide.cloud.vastai.steps.ssh.title">Setup SSH Tunnel</h4>
+                                            <h4 data-translate="deployment_guide.cloud.vastai.steps.ssh.title">Enable the Bundled GPU Tunnel Service</h4>
+                                            <p data-translate="deployment_guide.cloud.vastai.steps.ssh.desc">A bundled tunnel service is included for connecting to a remotely hosted GPU inference instance. It is configured entirely through environment variables — no manual scripts required.</p>
                                             <div class="code-block">
-                                                <pre><code># Setup SSH tunnel for model provider access
-./setup_ssh_env.sh
-./setup_ollama_tunnel.sh</code></pre>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="cloud-card">
-                                <h3 data-translate="deployment_guide.cloud.runpod.title">RunPod Deployment</h3>
-                                <div class="deployment-steps">
-                                    <div class="step">
-                                        <div class="step-number">1</div>
-                                        <div class="step-content">
-                                            <h4 data-translate="deployment_guide.cloud.runpod.steps.instance.title">Create RunPod Instance</h4>
-                                            <ul>
-                                                <li data-translate="deployment_guide.cloud.runpod.steps.instance.gpu">Select GPU-enabled pod</li>
-                                                <li data-translate="deployment_guide.cloud.runpod.steps.instance.template">Use RunPod PyTorch template</li>
-                                                <li data-translate="deployment_guide.cloud.runpod.steps.instance.network">Configure network access</li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="step">
-                                        <div class="step-number">2</div>
-                                        <div class="step-content">
-                                            <h4 data-translate="deployment_guide.cloud.runpod.steps.deploy.title">Deploy with RunPod Config</h4>
-                                            <div class="code-block">
-                                                <pre><code># Use RunPod-specific configuration
-docker-compose -f runpod-docker-compose.yml up -d</code></pre>
+                                                <pre><code># Enable the external GPU tunnel profile
+docker compose --profile external-gpu up -d</code></pre>
                                             </div>
                                         </div>
                                     </div>
@@ -356,14 +329,16 @@ docker-compose -f runpod-docker-compose.yml up -d</code></pre>
                             <h3 data-translate="deployment_guide.configuration.models.title">Model Configuration</h3>
                             <div class="code-block">
                                 <pre><code># Default models (override in .env)
-EMBEDDING_MODEL=BAAI/bge-m3
-VLLM_MODEL=mistralai/Mistral-Small-Instruct-2409
-VLLM_BASE_URL=http://host.docker.internal:8000
+EMBEDDING_MODEL=&lt;multilingual-embedding-default&gt;
+VLLM_MODEL=&lt;self-hosted-model-default&gt;
+VLLM_BASE_URL=&lt;self-hosted-inference-url&gt;
+
+# LLM_PROVIDER supports managed cloud providers (OpenAI, Anthropic) or self-hosted vLLM
+LLM_PROVIDER=&lt;approved-provider&gt;
 
 # Token and reasoning tuning (when LLM_PROVIDER=openai)
 OPENAI_TIER_HYBRID_TOKENS=&lt;profile-default&gt;
-OPENAI_RAG_REASONING_EFFORT=&lt;policy-default&gt;
-LLM_TOKENS_SQL=&lt;profile-default&gt;</code></pre>
+OPENAI_RAG_REASONING_EFFORT=&lt;policy-default&gt;</code></pre>
                             </div>
                         </div>
                     </section>
@@ -399,7 +374,7 @@ docker compose logs -f &lt;backend-service&gt;</code></pre>
 docker compose --profile monitoring up -d
 
 # Check monitoring services
-docker ps | grep -E "rag-prometheus|rag-grafana|rag-sentry"</code></pre>
+docker ps | grep -E "raghim-prometheus|raghim-grafana|raghim-sentry"</code></pre>
                             </div>
                             <div class="info-box">
                                 <strong>Resource note:</strong> The monitoring stack adds approximately 2–4 GB RAM overhead. Ensure your host has sufficient capacity before enabling.
@@ -457,7 +432,7 @@ docker-compose -f docker-compose/docker-compose.yml logs -f</code></pre>
                                         <strong data-translate="deployment_guide.verification.urls.health.label">Health Check:</strong> <code>https://&lt;api-domain&gt;/health</code>
                                     </div>
                                     <div class="url-item">
-                                        <strong data-translate="deployment_guide.verification.urls.health.label">Worker Status:</strong> <code>docker logs rag-worker</code>
+                                        <strong data-translate="deployment_guide.verification.urls.health.label">Worker Status:</strong> <code>docker logs raghim-worker</code>
                                     </div>
                                 </div>
                             </div>
@@ -515,10 +490,10 @@ docker-compose -f docker-compose/docker-compose.yml logs -f</code></pre>
                                 <div class="solution">
                                     <h4 data-translate="deployment_guide.troubleshooting.solutions">Solutions:</h4>
                                     <ul>
-                                        <li data-translate="deployment_guide.troubleshooting.db.status">Check PostgreSQL container status: <code>docker logs rag-postgres</code></li>
+                                        <li data-translate="deployment_guide.troubleshooting.db.status">Check PostgreSQL container status: <code>docker logs raghim-postgres</code></li>
                                         <li data-translate="deployment_guide.troubleshooting.db.credentials">Verify database credentials in .env</li>
                                         <li data-translate="deployment_guide.troubleshooting.db.network">Check network connectivity between containers</li>
-                                        <li data-translate="deployment_guide.troubleshooting.db.logs">Review database logs: <code>docker ps | grep rag-postgres</code></li>
+                                        <li data-translate="deployment_guide.troubleshooting.db.logs">Review database logs: <code>docker ps | grep raghim-postgres</code></li>
                                         <li>Note: pgvector is integrated into PostgreSQL — no separate vector database container or port is used</li>
                                     </ul>
                                 </div>
@@ -556,7 +531,7 @@ docker-compose -f docker-compose/docker-compose.yml logs -f</code></pre>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2026 Raghim AI. All rights reserved. Enterprise Agent Platform v2.0.5</p>
+                <p>&copy; 2026 Raghim AI. All rights reserved. Enterprise Agent Platform v2.0.20</p>
             </div>
         </div>
     </footer>
