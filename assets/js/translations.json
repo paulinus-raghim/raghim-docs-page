@@ -268,12 +268,13 @@
         "title": "Table of Contents",
         "prerequisites": "Prerequisites",
         "architecture": "System Architecture",
-        "offline": "Offline Deployment",
-        "cloud": "Cloud Deployment",
+        "offline": "Package Deployment",
+        "cloud": "GPU Deployment",
         "configuration": "Configuration",
         "verification": "Verification",
         "troubleshooting": "Troubleshooting",
-        "optional_services": "Optional Services"
+        "optional_services": "Optional Services",
+        "licensing": "Licensing & Activation"
       },
       "prerequisites": {
         "title": "Prerequisites",
@@ -284,7 +285,7 @@
           "ram": "RAM: 16GB minimum, 32GB+ recommended",
           "storage": "Storage: 80GB+ free disk space (Docker images ~30–40 GB; model weights ~8–50 GB additional)",
           "cpu": "CPU: 4 cores minimum, 8 cores recommended",
-          "gpu": "GPU / VRAM: NVIDIA GPU with CUDA support — required for offline LLM inference (8 GB VRAM minimum for small quantised models; 24 GB+ recommended). GPU may be local or a remote instance accessed via SSH tunnel. Not required if using a managed cloud LLM provider."
+          "gpu": "<strong>GPU / VRAM:</strong> NVIDIA GPU with CUDA support — <strong>required</strong> only for self-hosted LLM inference (8 GB VRAM minimum for small quantised models; 24 GB+ recommended). Not required if using a managed cloud LLM provider."
         },
         "software": {
           "docker": "Docker: 20.10+",
@@ -359,24 +360,24 @@
         }
       },
       "offline": {
-        "title": "Offline Enterprise Deployment",
-        "subtitle": "The offline package provides a complete, self-contained deployment solution with all dependencies included.",
+        "title": "Package Deployment",
+        "subtitle": "A self-contained deployment package — a Docker Compose configuration plus a small set of install/operations scripts.",
         "steps": {
           "download": {
             "title": "Download Package",
-            "desc": "Download the offline enterprise package from your Raghim AI representative."
+            "desc": "After activating your license, download the enterprise package from your unique link at raghim.com."
           },
           "installer": {
-            "title": "Run Interactive Installer",
-            "desc": "Use the interactive installer for guided setup and configuration.",
+            "title": "Run the Installer",
+            "desc": "Run install.sh, which auto-detects your network configuration, generates a secure .env with generated secrets, pulls the required container images, and starts the stack.",
             "note_label": "Note:",
-            "note": "The installer will guide you through license acceptance, environment configuration, and deployment options."
+            "note": "On first run you'll be prompted to review the generated environment configuration before the stack starts."
           },
           "noninteractive": {
-            "title": "Non-Interactive Deployment",
-            "desc": "For automated deployments or CI/CD pipelines.",
+            "title": "Automated / CI Deployment",
+            "desc": "For CI/CD or unattended environments, set your configuration via environment variables before running — the same script skips interactive prompts when it detects a non-interactive shell.",
             "warning_label": "Warning:",
-            "warning": "Non-interactive deployment uses default configuration. Update the .env file for production use."
+            "warning": "Non-interactive deployment still generates strong random secrets, but review the resulting .env before exposing the deployment to production traffic."
           }
         }
       },
@@ -384,17 +385,17 @@
         "title": "Cloud Deployment",
         "subtitle": "Deploy on cloud platforms with external GPU support for enhanced performance.",
         "vastai": {
-          "title": "External GPU Deployment",
+          "title": "Self-Hosted GPU Deployment",
           "steps": {
             "instance": {
-              "title": "Provision a Remote GPU Instance",
-              "gpu": "Works with VastAI, RunPod, or any custom GPU server running the self-hosted inference stack",
-              "image": "Choose a recent Linux image with SSH access",
+              "title": "Provision a GPU-Enabled Host",
+              "gpu": "Any machine with an NVIDIA GPU — local hardware or a rented cloud GPU instance — running the standard deployment package",
+              "image": "Choose a recent Linux image with the NVIDIA Docker runtime installed",
               "ssh": "Configure SSH key-based access"
             },
             "ssh": {
-              "title": "Enable the Bundled GPU Tunnel Service",
-              "desc": "A bundled tunnel service is included for connecting to a remotely hosted GPU inference instance. It is configured entirely through environment variables — no manual scripts required."
+              "title": "Start the Self-Hosted Inference Service",
+              "desc": "The self-hosted language-model service is an optional profile on the same deployment package — no separate download or manual scripts required."
             }
           }
         },
@@ -517,6 +518,20 @@
           "credentials": "Verify database credentials",
           "network": "Check network connectivity",
           "logs": "Review database logs"
+        }
+      },
+      "licensing": {
+        "title": "Licensing & Activation",
+        "subtitle": "A new deployment starts in a time-limited evaluation trial; a previously-activated license that lapses gets a separate renewal grace period. The application requires an activated license once its trial or grace window ends.",
+        "how": {
+          "title": "How It Works",
+          "trial": "A brand-new, never-activated deployment runs on a short evaluation trial with no configuration required — once it ends without an activated license, the application requires activation before it will continue serving requests.",
+          "expiry": "A deployment that was previously activated and whose license has since lapsed gets a separate, short renewal grace period instead of a new trial.",
+          "offline": "Activation works in fully offline / air-gapped environments: the deployment generates a system-specific activation request, which you exchange for a signed license file — no persistent internet connection is required for ongoing operation."
+        },
+        "get": {
+          "title": "Getting a License",
+          "desc": "Activate or purchase a license at <a href=\"https://www.raghim.com/login\">raghim.com</a>, or contact <a href=\"mailto:sales@raghim.com\">sales@raghim.com</a>. The admin dashboard shows your current license status and remaining trial/grace time at any point."
         }
       }
     },
@@ -997,7 +1012,7 @@
         "git": "Git:",
         "git_value": "Latest version",
         "gpu": "GPU / VRAM:",
-        "gpu_value": "NVIDIA GPU with CUDA support — required for offline LLM inference. 8 GB VRAM minimum (small quantised models); 24 GB+ recommended. May be local or a remote GPU instance via SSH tunnel. Not required when using a cloud LLM provider.",
+        "gpu_value": "NVIDIA GPU with CUDA support — required only for self-hosted LLM inference. 8 GB VRAM minimum (small quantised models); 24 GB+ recommended. Not required when using a cloud LLM provider.",
         "nvidia_toolkit": "NVIDIA Container Toolkit:",
         "nvidia_toolkit_value": "Required when GPU is local (enables Docker GPU passthrough)"
       },
@@ -1005,11 +1020,11 @@
         "title": "Installation",
         "subtitle": "Deploy Raghim AI Enterprise using the offline package.",
         "download": "Download Package",
-        "download_desc": "Download the offline enterprise package from your Raghim AI representative.",
-        "run_installer": "Run Installer",
-        "run_installer_desc": "Execute the interactive installer for guided setup.",
+        "download_desc": "After activating your license, download the enterprise package from your unique link at raghim.com.",
+        "run_installer": "Run the Installer",
+        "run_installer_desc": "Run install.sh, which auto-detects your network configuration, generates a secure .env, and starts the stack.",
         "note_label": "Note:",
-        "note": "The installer will guide you through license acceptance and configuration.",
+        "note": "install.sh auto-detects your network configuration and generates a secure .env file automatically — no manual editing required for a default deployment.",
         "verify": "Verify Installation",
         "verify_desc": "Check that all services are running correctly."
       },
@@ -1337,8 +1352,8 @@
         "title": "Deployment Issues",
         "docker_compose_fails": "Docker Compose Fails",
         "docker_compose_fails_symptoms": "Symptoms: Containers fail to start or exit immediately",
-        "image_loading_failed": "Image Loading Failed",
-        "image_loading_failed_symptoms": "Symptoms: Docker images fail to load from tar.gz files",
+        "image_loading_failed": "Image Pull Failed",
+        "image_loading_failed_symptoms": "<strong>Symptoms:</strong> install.sh or docker compose up fails while pulling container images",
         "environment_configuration": "Environment Configuration",
         "environment_configuration_symptoms": "Symptoms: Services start but behave unexpectedly"
       },
@@ -1357,8 +1372,8 @@
         "gpu_not_detected_symptoms": "Symptoms: System falls back to CPU processing",
         "gpu_memory_issues": "GPU Memory Issues",
         "gpu_memory_issues_symptoms": "Symptoms: CUDA out of memory errors",
-        "external_gpu_connection": "External GPU Connection",
-        "external_gpu_connection_symptoms": "Symptoms: External GPU model provider not accessible"
+        "external_gpu_connection": "Self-Hosted Inference Service Not Starting",
+        "external_gpu_connection_symptoms": "<strong>Symptoms:</strong> Self-hosted LLM service not accessible after enabling the GPU profile"
       },
       "authentication_issues": {
         "title": "Authentication Issues",
@@ -1971,12 +1986,13 @@
         "title": "Table des Matières",
         "prerequisites": "Prérequis",
         "architecture": "Architecture du Système",
-        "offline": "Déploiement Hors Ligne",
-        "cloud": "Déploiement Cloud",
+        "offline": "Déploiement du pack",
+        "cloud": "Déploiement GPU",
         "configuration": "Configuration",
         "verification": "Vérification",
         "troubleshooting": "Dépannage",
-        "optional_services": "Optional Services"
+        "optional_services": "Optional Services",
+        "licensing": "Licence et activation"
       },
       "prerequisites": {
         "title": "Prérequis",
@@ -1987,7 +2003,7 @@
           "ram": "RAM: 16GB minimum, 32GB+ recommended",
           "storage": "Storage: 80GB+ free disk space (Docker images ~30–40 GB; model weights ~8–50 GB additional)",
           "cpu": "CPU : 4 cœurs minimum, 8 cœurs recommandés",
-          "gpu": "GPU / VRAM: NVIDIA GPU with CUDA support — required for offline LLM inference (8 GB VRAM minimum for small quantised models; 24 GB+ recommended). GPU may be local or a remote instance accessed via SSH tunnel. Not required if using a managed cloud LLM provider."
+          "gpu": "<strong>GPU / VRAM :</strong> GPU NVIDIA avec support CUDA — <strong>requis</strong> uniquement pour l'inférence LLM auto-hébergée (8 Go de VRAM minimum pour les petits modèles quantifiés ; 24 Go+ recommandés). Non requis si vous utilisez un fournisseur LLM cloud managé."
         },
         "software": {
           "docker": "Docker : 20.10+",
@@ -2062,24 +2078,24 @@
         }
       },
       "offline": {
-        "title": "Déploiement Entreprise Hors Ligne",
-        "subtitle": "Le package hors ligne fournit une solution de déploiement autonome complète avec toutes les dépendances incluses.",
+        "title": "Déploiement du pack",
+        "subtitle": "Un pack de déploiement autonome — une configuration Docker Compose et un petit ensemble de scripts d'installation/exploitation.",
         "steps": {
           "download": {
             "title": "Télécharger le Package",
-            "desc": "Téléchargez le package entreprise hors ligne auprès de votre représentant Raghim AI."
+            "desc": "Après avoir activé votre licence, téléchargez le pack entreprise depuis votre lien unique sur raghim.com."
           },
           "installer": {
-            "title": "Exécuter l'Installeur Interactif",
-            "desc": "Utilisez l'installeur interactif pour une configuration guidée.",
+            "title": "Exécuter l'installateur",
+            "desc": "Exécutez install.sh, qui détecte automatiquement votre configuration réseau, génère un .env sécurisé avec des secrets générés, télécharge les images de conteneurs requises et démarre la pile.",
             "note_label": "Remarque :",
-            "note": "L'installeur vous guidera dans l'acceptation de la licence, la configuration de l'environnement et les options de déploiement."
+            "note": "Au premier lancement, vous serez invité à vérifier la configuration d'environnement générée avant le démarrage de la pile."
           },
           "noninteractive": {
-            "title": "Déploiement Non-Interactif",
-            "desc": "Pour les déploiements automatisés ou les pipelines CI/CD.",
+            "title": "Déploiement automatisé / CI",
+            "desc": "Pour les environnements CI/CD ou non surveillés, définissez votre configuration via des variables d'environnement avant l'exécution — le même script ignore les invites interactives lorsqu'il détecte un shell non interactif.",
             "warning_label": "Avertissement :",
-            "warning": "Le déploiement non-interactif utilise la configuration par défaut. Mettez à jour le fichier .env pour la production."
+            "warning": "Le déploiement non interactif génère tout de même des secrets aléatoires forts, mais vérifiez le fichier .env résultant avant d'exposer le déploiement au trafic de production."
           }
         }
       },
@@ -2087,17 +2103,17 @@
         "title": "Déploiement Cloud",
         "subtitle": "Déployez sur des plateformes cloud avec support GPU externe pour des performances accrues.",
         "vastai": {
-          "title": "Déploiement GPU externe",
+          "title": "Déploiement GPU auto-hébergé",
           "steps": {
             "instance": {
-              "title": "Provisionner une instance GPU distante",
-              "gpu": "Compatible avec VastAI, RunPod, ou tout serveur GPU personnalisé exécutant la pile d'inférence auto-hébergée",
-              "image": "Choisissez une image Linux récente avec accès SSH",
+              "title": "Provisionner un hôte équipé d'un GPU",
+              "gpu": "Toute machine équipée d'un GPU NVIDIA — matériel local ou instance GPU cloud louée — exécutant le pack de déploiement standard",
+              "image": "Choisissez une image Linux récente avec le runtime NVIDIA Docker installé",
               "ssh": "Configurez l'accès par clé SSH"
             },
             "ssh": {
-              "title": "Activer le service de tunnel GPU intégré",
-              "desc": "Un service de tunnel intégré permet de se connecter à une instance d'inférence GPU hébergée à distance. Il se configure entièrement via des variables d'environnement — aucun script manuel requis."
+              "title": "Démarrer le service d'inférence auto-hébergé",
+              "desc": "Le service de modèle de langage auto-hébergé est un profil optionnel du même pack de déploiement — aucun téléchargement séparé ni script manuel requis."
             }
           }
         },
@@ -2220,6 +2236,20 @@
           "credentials": "Vérifiez les identifiants de la base",
           "network": "Vérifiez la connectivité réseau",
           "logs": "Consultez les journaux de la base de données"
+        }
+      },
+      "licensing": {
+        "title": "Licence et activation",
+        "subtitle": "Un nouveau déploiement démarre avec un essai d'évaluation limité dans le temps ; une licence déjà activée qui expire bénéficie d'une période de grâce de renouvellement distincte. L'application nécessite une licence activée une fois la fenêtre d'essai ou de grâce écoulée.",
+        "how": {
+          "title": "Fonctionnement",
+          "trial": "Un déploiement tout neuf, jamais activé, fonctionne avec un court essai d'évaluation sans configuration requise — une fois celui-ci terminé sans licence activée, l'application nécessite une activation pour continuer à traiter les requêtes.",
+          "expiry": "Un déploiement déjà activé dont la licence a expiré bénéficie d'une courte période de grâce de renouvellement distincte, et non d'un nouvel essai.",
+          "offline": "L'activation fonctionne dans des environnements entièrement hors ligne / isolés : le déploiement génère une demande d'activation spécifique au système, que vous échangez contre un fichier de licence signé — aucune connexion internet persistante n'est requise pour le fonctionnement continu."
+        },
+        "get": {
+          "title": "Obtenir une licence",
+          "desc": "Activez ou achetez une licence sur <a href=\"https://www.raghim.com/login\">raghim.com</a>, ou contactez <a href=\"mailto:sales@raghim.com\">sales@raghim.com</a>. Le tableau de bord administrateur affiche à tout moment votre statut de licence actuel et le temps d'essai/grâce restant."
         }
       }
     },
@@ -2703,7 +2733,7 @@
         "git": "Git :",
         "git_value": "Dernière version",
         "gpu": "GPU / VRAM:",
-        "gpu_value": "NVIDIA GPU with CUDA support — required for offline LLM inference. 8 GB VRAM minimum (small quantised models); 24 GB+ recommended. May be local or a remote GPU instance via SSH tunnel. Not required when using a cloud LLM provider.",
+        "gpu_value": "GPU NVIDIA avec support CUDA — requis uniquement pour l'inférence LLM auto-hébergée. 8 Go de VRAM minimum (petits modèles quantifiés) ; 24 Go+ recommandés. Non requis avec un fournisseur LLM cloud.",
         "nvidia_toolkit": "NVIDIA Container Toolkit:",
         "nvidia_toolkit_value": "Required when GPU is local (enables Docker GPU passthrough)"
       },
@@ -2711,11 +2741,11 @@
         "title": "Installation",
         "subtitle": "Déployez Raghim AI Entreprise en utilisant le package hors ligne.",
         "download": "Télécharger le Package",
-        "download_desc": "Téléchargez le package entreprise hors ligne auprès de votre représentant Raghim AI.",
-        "run_installer": "Exécuter l'Installeur",
-        "run_installer_desc": "Exécutez l'installeur interactif pour une configuration guidée.",
+        "download_desc": "Après avoir activé votre licence, téléchargez le pack entreprise depuis votre lien unique sur raghim.com.",
+        "run_installer": "Exécuter l'installateur",
+        "run_installer_desc": "Exécutez install.sh, qui détecte automatiquement votre configuration réseau, génère un .env sécurisé et démarre la pile.",
         "note_label": "Remarque :",
-        "note": "L'installeur vous guidera dans l'acceptation de la licence et la configuration.",
+        "note": "install.sh détecte automatiquement votre configuration réseau et génère un fichier .env sécurisé automatiquement — aucune modification manuelle requise pour un déploiement par défaut.",
         "verify": "Vérifier l'Installation",
         "verify_desc": "Vérifiez que tous les services fonctionnent correctement."
       },
@@ -3043,8 +3073,8 @@
         "title": "Problèmes de Déploiement",
         "docker_compose_fails": "Docker Compose Échoue",
         "docker_compose_fails_symptoms": "Symptômes : Les conteneurs échouent au démarrage ou se ferment immédiatement",
-        "image_loading_failed": "Chargement Image Échoué",
-        "image_loading_failed_symptoms": "Symptômes : Les images Docker échouent à charger depuis les fichiers tar.gz",
+        "image_loading_failed": "Échec du téléchargement de l'image",
+        "image_loading_failed_symptoms": "<strong>Symptômes :</strong> install.sh ou docker compose up échoue lors du téléchargement des images de conteneurs",
         "environment_configuration": "Configuration Environnement",
         "environment_configuration_symptoms": "Symptômes : Les services démarrent mais se comportent de manière inattendue"
       },
@@ -3063,8 +3093,8 @@
         "gpu_not_detected_symptoms": "Symptômes : Le système utilise le traitement CPU",
         "gpu_memory_issues": "Problèmes Mémoire GPU",
         "gpu_memory_issues_symptoms": "Symptômes : Erreurs CUDA mémoire insuffisante",
-        "external_gpu_connection": "Connexion GPU Externe",
-        "external_gpu_connection_symptoms": "Symptômes : model provider GPU externe non accessible"
+        "external_gpu_connection": "Le service d'inférence auto-hébergé ne démarre pas",
+        "external_gpu_connection_symptoms": "<strong>Symptômes :</strong> Service LLM auto-hébergé inaccessible après activation du profil GPU"
       },
       "authentication_issues": {
         "title": "Problèmes d'Authentification",

@@ -72,7 +72,7 @@
                                     <li><strong data-translate="quick_start.prerequisites.ram">RAM:</strong> <span data-translate="quick_start.prerequisites.ram_value">16GB minimum, 32GB+ recommended</span></li>
                                     <li><strong data-translate="quick_start.prerequisites.storage">Storage:</strong> <span data-translate="quick_start.prerequisites.storage_value">80GB+ free disk space</span></li>
                                     <li><strong data-translate="quick_start.prerequisites.cpu">CPU:</strong> <span data-translate="quick_start.prerequisites.cpu_value">4 cores minimum, 8 cores recommended</span></li>
-                                    <li><strong data-translate="quick_start.prerequisites.gpu">GPU / VRAM:</strong> <span data-translate="quick_start.prerequisites.gpu_value">NVIDIA GPU with CUDA support — required for offline LLM inference. 8 GB VRAM minimum (small quantised models); 24 GB+ recommended. May be local or a remote GPU instance via SSH tunnel. Not required when using a cloud LLM provider.</span></li>
+                                    <li><strong data-translate="quick_start.prerequisites.gpu">GPU / VRAM:</strong> <span data-translate="quick_start.prerequisites.gpu_value">NVIDIA GPU with CUDA support — required only for self-hosted LLM inference. 8 GB VRAM minimum (small quantised models); 24 GB+ recommended. Not required when using a cloud LLM provider.</span></li>
                                     <li><strong data-translate="quick_start.prerequisites.nvidia_toolkit">NVIDIA Container Toolkit:</strong> <span data-translate="quick_start.prerequisites.nvidia_toolkit_value">Required when GPU is local (enables Docker GPU passthrough)</span></li>
                                 </ul>
                             </div>
@@ -98,11 +98,11 @@
                                 <div class="step-number">1</div>
                                 <div class="step-content">
                                     <h3 data-translate="quick_start.installation.download">Download Package</h3>
-                                    <p data-translate="quick_start.installation.download_desc">Download the offline enterprise package from your Raghim AI representative.</p>
+                                    <p data-translate="quick_start.installation.download_desc">After activating your license, download the enterprise package from your unique link at raghim.com.</p>
                                     <div class="code-block">
                                         <pre><code># Extract the package
-tar -xzf rag-enterprise-&lt;version&gt;-offline.tar.gz
-cd rag-enterprise-&lt;version&gt;-offline</code></pre>
+unzip raghim-enterprise-&lt;version&gt;.zip
+cd raghim-enterprise-&lt;version&gt;</code></pre>
                                     </div>
                                 </div>
                             </div>
@@ -110,17 +110,13 @@ cd rag-enterprise-&lt;version&gt;-offline</code></pre>
                             <div class="step">
                                 <div class="step-number">2</div>
                                 <div class="step-content">
-                                    <h3 data-translate="quick_start.installation.run_installer">Run Installer</h3>
-                                    <p data-translate="quick_start.installation.run_installer_desc">Execute the interactive installer (<code>INSTALL.sh</code>) for guided setup, or run <code>DEPLOY.sh</code> for automated non-interactive deployment.</p>
+                                    <h3 data-translate="quick_start.installation.run_installer">Run the Installer</h3>
+                                    <p data-translate="quick_start.installation.run_installer_desc">Run <code>install.sh</code>, which auto-detects your network configuration, generates a secure <code>.env</code>, and starts the stack.</p>
                                     <div class="code-block">
-                                        <pre><code># Interactive guided setup (recommended for first deployment):
-./INSTALL.sh
-
-# Or non-interactive automated deployment (auto-detects IP/network):
-./DEPLOY.sh</code></pre>
+                                        <pre><code>./install.sh</code></pre>
                                     </div>
                                     <div class="info-box">
-                                        <strong data-translate="quick_start.installation.note_label">Note:</strong> <span data-translate="quick_start.installation.note">The interactive installer guides you through environment configuration and deployment. <code>DEPLOY.sh</code> auto-detects your network configuration and generates a secure <code>.env</code> file automatically.</span>
+                                        <strong data-translate="quick_start.installation.note_label">Note:</strong> <span data-translate="quick_start.installation.note"><code>install.sh</code> auto-detects your network configuration and generates a secure <code>.env</code> file automatically — no manual editing required for a default deployment.</span>
                                     </div>
                                 </div>
                             </div>

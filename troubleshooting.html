@@ -198,14 +198,14 @@
                             </div>
 
                             <div class="issue-card">
-                                <h3 data-translate="troubleshooting.deployment_issues.image_loading_failed">Image Loading Failed</h3>
-                                <p data-translate="troubleshooting.deployment_issues.image_loading_failed_symptoms"><strong>Symptoms:</strong> Docker images fail to load from tar.gz files</p>
+                                <h3 data-translate="troubleshooting.deployment_issues.image_loading_failed">Image Pull Failed</h3>
+                                <p data-translate="troubleshooting.deployment_issues.image_loading_failed_symptoms"><strong>Symptoms:</strong> <code>install.sh</code> or <code>docker compose up</code> fails while pulling container images</p>
                                 <div class="solution">
                                     <h4 data-translate="troubleshooting.solutions">Solutions:</h4>
                                     <ul>
-                                        <li>Verify tar.gz file integrity</li>
+                                        <li>Verify outbound internet access from the host</li>
                                         <li>Check available disk space</li>
-                                        <li>Use <code>docker load -i image.tar.gz</code> manually</li>
+                                        <li>Re-run <code>docker compose pull</code> manually</li>
                                         <li>Check Docker daemon status</li>
                                         <li>Restart Docker service if needed</li>
                                     </ul>
@@ -332,16 +332,15 @@
                             </div>
 
                             <div class="issue-card">
-                                <h3 data-translate="troubleshooting.gpu_issues.external_gpu_connection">External GPU Connection</h3>
-                                <p data-translate="troubleshooting.gpu_issues.external_gpu_connection_symptoms"><strong>Symptoms:</strong> External GPU model provider not accessible</p>
+                                <h3 data-translate="troubleshooting.gpu_issues.external_gpu_connection">Self-Hosted Inference Service Not Starting</h3>
+                                <p data-translate="troubleshooting.gpu_issues.external_gpu_connection_symptoms"><strong>Symptoms:</strong> Self-hosted LLM service not accessible after enabling the GPU profile</p>
                                 <div class="solution">
                                     <h4 data-translate="troubleshooting.solutions">Solutions:</h4>
                                     <ul>
-                                        <li>Check SSH tunnel status</li>
-                                        <li>Verify external GPU endpoint</li>
-                                        <li>Test connection: <code>curl http://external-gpu:11434/api/tags</code></li>
+                                        <li>Verify the GPU profile is running: <code>docker compose --profile gpu ps</code></li>
+                                        <li>Check NVIDIA Docker runtime is installed and detected</li>
                                         <li>Check firewall settings</li>
-                                        <li>Verify model provider is running on external GPU</li>
+                                        <li>Verify <code>LLM_PROVIDER</code> in <code>.env</code> points at the self-hosted service</li>
                                     </ul>
                                 </div>
                             </div>

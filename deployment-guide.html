@@ -49,8 +49,9 @@
                     <ul class="toc">
                         <li><a href="#prerequisites" data-translate="deployment_guide.toc.prerequisites">Prerequisites</a></li>
                         <li><a href="#architecture" data-translate="deployment_guide.toc.architecture">System Architecture</a></li>
-                        <li><a href="#offline-deployment" data-translate="deployment_guide.toc.offline">Offline Deployment</a></li>
-                        <li><a href="#cloud-deployment" data-translate="deployment_guide.toc.cloud">Cloud Deployment</a></li>
+                        <li><a href="#offline-deployment" data-translate="deployment_guide.toc.offline">Package Deployment</a></li>
+                        <li><a href="#licensing" data-translate="deployment_guide.toc.licensing">Licensing &amp; Activation</a></li>
+                        <li><a href="#cloud-deployment" data-translate="deployment_guide.toc.cloud">GPU Deployment</a></li>
                         <li><a href="#configuration" data-translate="deployment_guide.toc.configuration">Configuration</a></li>
                         <li><a href="#optional-services" data-translate="deployment_guide.toc.optional_services">Optional Services</a></li>
                         <li><a href="#verification" data-translate="deployment_guide.toc.verification">Verification</a></li>
@@ -69,7 +70,7 @@
                                     <li data-translate="deployment_guide.prerequisites.items.ram"><strong>RAM:</strong> 16GB minimum, 32GB+ recommended</li>
                                     <li data-translate="deployment_guide.prerequisites.items.storage"><strong>Storage:</strong> 80GB+ free disk space (Docker images ~30–40 GB; model weights ~8–50 GB additional)</li>
                                     <li data-translate="deployment_guide.prerequisites.items.cpu"><strong>CPU:</strong> 4 cores minimum, 8 cores recommended</li>
-                                    <li data-translate="deployment_guide.prerequisites.items.gpu"><strong>GPU / VRAM:</strong> NVIDIA GPU with CUDA support — <strong>required</strong> for offline LLM inference (8 GB VRAM minimum for small quantised models; 24 GB+ recommended). GPU may be local or a remote instance accessed via SSH tunnel. Not required if using a managed cloud LLM provider.</li>
+                                    <li data-translate="deployment_guide.prerequisites.items.gpu"><strong>GPU / VRAM:</strong> NVIDIA GPU with CUDA support — <strong>required</strong> only for self-hosted LLM inference (8 GB VRAM minimum for small quantised models; 24 GB+ recommended). Not required if using a managed cloud LLM provider.</li>
                                 </ul>
                             </div>
 
@@ -181,19 +182,19 @@
                     </section>
 
                     <section id="offline-deployment">
-                        <h2 data-translate="deployment_guide.offline.title">Offline Enterprise Deployment</h2>
-                        <p data-translate="deployment_guide.offline.subtitle">The offline package provides a complete, self-contained deployment solution with all dependencies included.</p>
-                        
+                        <h2 data-translate="deployment_guide.offline.title">Package Deployment</h2>
+                        <p data-translate="deployment_guide.offline.subtitle">A self-contained deployment package — a Docker Compose configuration plus a small set of install/operations scripts.</p>
+
                         <div class="deployment-steps">
                             <div class="step">
                                 <div class="step-number">1</div>
                                 <div class="step-content">
                                     <h3 data-translate="deployment_guide.offline.steps.download.title">Download Package</h3>
-                                    <p data-translate="deployment_guide.offline.steps.download.desc">Download the offline enterprise package from your Raghim AI representative.</p>
+                                    <p data-translate="deployment_guide.offline.steps.download.desc">After activating your license, download the enterprise package from your unique link at raghim.com.</p>
                                     <div class="code-block">
                                         <pre><code># Extract the package
-tar -xzf rag-enterprise-2.0.20-offline-managed-local.tar.gz
-cd rag-enterprise-2.0.20-offline-managed-local</code></pre>
+unzip raghim-enterprise-2.0.20.zip
+cd raghim-enterprise-2.0.20</code></pre>
                                     </div>
                                 </div>
                             </div>
@@ -201,17 +202,13 @@ cd rag-enterprise-2.0.20-offline-managed-local</code></pre>
                             <div class="step">
                                 <div class="step-number">2</div>
                                 <div class="step-content">
-                                    <h3 data-translate="deployment_guide.offline.steps.installer.title">Run Interactive Installer</h3>
-                                    <p data-translate="deployment_guide.offline.steps.installer.desc">Use the interactive installer for guided setup and configuration.</p>
+                                    <h3 data-translate="deployment_guide.offline.steps.installer.title">Run the Installer</h3>
+                                    <p data-translate="deployment_guide.offline.steps.installer.desc">Run <code>install.sh</code>, which auto-detects your network configuration, generates a secure <code>.env</code> with generated secrets, pulls the required container images, and starts the stack.</p>
                                     <div class="code-block">
-                                        <pre><code># Launch interactive installer
-./deploy.sh
-
-# Or run installer directly
-./installer/installer.sh</code></pre>
+                                        <pre><code>./install.sh</code></pre>
                                     </div>
                                     <div class="info-box">
-                                        <strong data-translate="deployment_guide.offline.steps.installer.note_label">Note:</strong> <span data-translate="deployment_guide.offline.steps.installer.note">The installer will guide you through license acceptance, environment configuration, and deployment options.</span>
+                                        <strong data-translate="deployment_guide.offline.steps.installer.note_label">Note:</strong> <span data-translate="deployment_guide.offline.steps.installer.note">On first run you'll be prompted to review the generated environment configuration before the stack starts.</span>
                                     </div>
                                 </div>
                             </div>
@@ -219,17 +216,36 @@ cd rag-enterprise-2.0.20-offline-managed-local</code></pre>
                             <div class="step">
                                 <div class="step-number">3</div>
                                 <div class="step-content">
-                                    <h3 data-translate="deployment_guide.offline.steps.noninteractive.title">Non-Interactive Deployment</h3>
-                                    <p data-translate="deployment_guide.offline.steps.noninteractive.desc">For automated deployments or CI/CD pipelines.</p>
+                                    <h3 data-translate="deployment_guide.offline.steps.noninteractive.title">Automated / CI Deployment</h3>
+                                    <p data-translate="deployment_guide.offline.steps.noninteractive.desc">For CI/CD or unattended environments, set your configuration via environment variables before running — the same script skips interactive prompts when it detects a non-interactive shell.</p>
                                     <div class="code-block">
-                                        <pre><code># Automated deployment
-./deploy.sh</code></pre>
+                                        <pre><code># Automated deployment (non-interactive)
+./install.sh</code></pre>
                                     </div>
                                     <div class="warning-box">
-                                        <strong data-translate="deployment_guide.offline.steps.noninteractive.warning_label">Warning:</strong> <span data-translate="deployment_guide.offline.steps.noninteractive.warning">Non-interactive deployment uses default configuration. Update the .env file for production use.</span>
+                                        <strong data-translate="deployment_guide.offline.steps.noninteractive.warning_label">Warning:</strong> <span data-translate="deployment_guide.offline.steps.noninteractive.warning">Non-interactive deployment still generates strong random secrets, but review the resulting .env before exposing the deployment to production traffic.</span>
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                    </section>
+
+                    <section id="licensing">
+                        <h2 data-translate="deployment_guide.licensing.title">Licensing &amp; Activation</h2>
+                        <p data-translate="deployment_guide.licensing.subtitle">A new deployment starts in a time-limited evaluation trial; a previously-activated license that lapses gets a separate renewal grace period. The application requires an activated license once its trial or grace window ends.</p>
+
+                        <div class="integration-section">
+                            <h3 data-translate="deployment_guide.licensing.how.title">How It Works</h3>
+                            <ul>
+                                <li data-translate="deployment_guide.licensing.how.trial">A brand-new, never-activated deployment runs on a short evaluation trial with no configuration required — once it ends without an activated license, the application requires activation before it will continue serving requests.</li>
+                                <li data-translate="deployment_guide.licensing.how.expiry">A deployment that was previously activated and whose license has since lapsed gets a separate, short renewal grace period instead of a new trial.</li>
+                                <li data-translate="deployment_guide.licensing.how.offline">Activation works in fully offline / air-gapped environments: the deployment generates a system-specific activation request, which you exchange for a signed license file — no persistent internet connection is required for ongoing operation.</li>
+                            </ul>
+                        </div>
+
+                        <div class="integration-section">
+                            <h3 data-translate="deployment_guide.licensing.get.title">Getting a License</h3>
+                            <p data-translate="deployment_guide.licensing.get.desc">Activate or purchase a license at <a href="https://www.raghim.com/login">raghim.com</a>, or contact <a href="mailto:sales@raghim.com">sales@raghim.com</a>. The admin dashboard shows your current license status and remaining trial/grace time at any point.</p>
                         </div>
                     </section>
 
@@ -239,15 +255,15 @@ cd rag-enterprise-2.0.20-offline-managed-local</code></pre>
 
                         <div class="cloud-options">
                             <div class="cloud-card">
-                                <h3 data-translate="deployment_guide.cloud.vastai.title">External GPU Deployment</h3>
+                                <h3 data-translate="deployment_guide.cloud.vastai.title">Self-Hosted GPU Deployment</h3>
                                 <div class="deployment-steps">
                                     <div class="step">
                                         <div class="step-number">1</div>
                                         <div class="step-content">
-                                            <h4 data-translate="deployment_guide.cloud.vastai.steps.instance.title">Provision a Remote GPU Instance</h4>
+                                            <h4 data-translate="deployment_guide.cloud.vastai.steps.instance.title">Provision a GPU-Enabled Host</h4>
                                             <ul>
-                                                <li data-translate="deployment_guide.cloud.vastai.steps.instance.gpu">Works with VastAI, RunPod, or any custom GPU server running the self-hosted inference stack</li>
-                                                <li data-translate="deployment_guide.cloud.vastai.steps.instance.image">Choose a recent Linux image with SSH access</li>
+                                                <li data-translate="deployment_guide.cloud.vastai.steps.instance.gpu">Any machine with an NVIDIA GPU — local hardware or a rented cloud GPU instance — running the standard deployment package</li>
+                                                <li data-translate="deployment_guide.cloud.vastai.steps.instance.image">Choose a recent Linux image with the NVIDIA Docker runtime installed</li>
                                                 <li data-translate="deployment_guide.cloud.vastai.steps.instance.ssh">Configure SSH key-based access</li>
                                             </ul>
                                         </div>
@@ -255,11 +271,11 @@ cd rag-enterprise-2.0.20-offline-managed-local</code></pre>
                                     <div class="step">
                                         <div class="step-number">2</div>
                                         <div class="step-content">
-                                            <h4 data-translate="deployment_guide.cloud.vastai.steps.ssh.title">Enable the Bundled GPU Tunnel Service</h4>
-                                            <p data-translate="deployment_guide.cloud.vastai.steps.ssh.desc">A bundled tunnel service is included for connecting to a remotely hosted GPU inference instance. It is configured entirely through environment variables — no manual scripts required.</p>
+                                            <h4 data-translate="deployment_guide.cloud.vastai.steps.ssh.title">Start the Self-Hosted Inference Service</h4>
+                                            <p data-translate="deployment_guide.cloud.vastai.steps.ssh.desc">The self-hosted language-model service is an optional profile on the same deployment package — no separate download or manual scripts required.</p>
                                             <div class="code-block">
-                                                <pre><code># Enable the external GPU tunnel profile
-docker compose --profile external-gpu up -d</code></pre>
+                                                <pre><code># Enable the GPU inference profile
+docker compose --profile gpu up -d</code></pre>
                                             </div>
                                         </div>
                                     </div>
@@ -368,13 +384,13 @@ docker compose logs -f &lt;backend-service&gt;</code></pre>
 
                         <div class="integration-section">
                             <h3>Monitoring Stack</h3>
-                            <p>The deployment package includes an optional monitoring stack (Prometheus, Grafana, Sentry) that can be enabled via Docker Compose profiles. These services are disabled by default to conserve resources on smaller deployments.</p>
+                            <p>The deployment package includes an optional monitoring stack (Prometheus, Grafana, and metric exporters) that can be enabled via a Docker Compose profile. These services are disabled by default to conserve resources on smaller deployments.</p>
                             <div class="code-block">
-                                <pre><code># Enable monitoring stack (Prometheus + Grafana + Sentry + exporters)
+                                <pre><code># Enable monitoring stack (Prometheus + Grafana + exporters)
 docker compose --profile monitoring up -d
 
 # Check monitoring services
-docker ps | grep -E "raghim-prometheus|raghim-grafana|raghim-sentry"</code></pre>
+docker ps | grep -E "raghim-prometheus|raghim-grafana"</code></pre>
                             </div>
                             <div class="info-box">
                                 <strong>Resource note:</strong> The monitoring stack adds approximately 2–4 GB RAM overhead. Ensure your host has sufficient capacity before enabling.
