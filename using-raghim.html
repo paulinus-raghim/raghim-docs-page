@@ -3,19 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>API Quickstart - Raghim AI</title>
+    <title>Using the App - Raghim AI</title>
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="icon" type="image/x-icon" href="assets/images/favicon.png">
     <link rel="icon" type="image/png" sizes="192x192" href="assets/images/logo192.png">
     <link rel="icon" type="image/png" sizes="512x512" href="assets/images/logo512.png">
     <link rel="apple-touch-icon" href="assets/images/logo192.png">
-    <meta name="description" content="Log in, upload a document and ask a question with the Raghim API in three calls">
-    <link rel="canonical" href="https://doc.raghim.com/api-quickstart.html">
+    <meta name="description" content="Upload documents, organize collections, chat with your agent and embed a widget">
+    <link rel="canonical" href="https://doc.raghim.com/using-raghim.html">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Raghim AI Documentation">
-    <meta property="og:title" content="API Quickstart - Raghim AI">
-    <meta property="og:description" content="Log in, upload a document and ask a question with the Raghim API in three calls">
-    <meta property="og:url" content="https://doc.raghim.com/api-quickstart.html">
+    <meta property="og:title" content="Using the App - Raghim AI">
+    <meta property="og:description" content="Upload documents, organize collections, chat with your agent and embed a widget">
+    <meta property="og:url" content="https://doc.raghim.com/using-raghim.html">
     <meta property="og:image" content="https://doc.raghim.com/assets/images/logo512.png">
 </head>
 <body>
@@ -28,18 +28,18 @@
                 </div>
                 <div class="nav-menu" id="nav-menu">
                     <a href="index.html" class="nav-link" data-translate="nav.home">Home</a>
-                    <div class="nav-group">
-                        <button type="button" class="nav-link nav-group-btn" aria-haspopup="true" data-translate="nav.use">Use Raghim</button>
+                    <div class="nav-group active">
+                        <button type="button" class="nav-link nav-group-btn active" aria-haspopup="true" data-translate="nav.use">Use Raghim</button>
                         <div class="nav-sub">
                             <a href="what-is-raghim.html" data-translate="nav.what_is">What is Raghim?</a>
-                            <a href="using-raghim.html" data-translate="nav.using_app">Using the App</a>
+                            <a href="using-raghim.html" class="active" aria-current="page" data-translate="nav.using_app">Using the App</a>
                             <a href="first-flow.html" data-translate="nav.first_flow">Your First Flow</a>
                         </div>
                     </div>
-                    <div class="nav-group active">
-                        <button type="button" class="nav-link nav-group-btn active" aria-haspopup="true" data-translate="nav.build">Build</button>
+                    <div class="nav-group">
+                        <button type="button" class="nav-link nav-group-btn" aria-haspopup="true" data-translate="nav.build">Build</button>
                         <div class="nav-sub">
-                            <a href="api-quickstart.html" class="active" aria-current="page" data-translate="nav.api_quickstart">API Quickstart</a>
+                            <a href="api-quickstart.html" data-translate="nav.api_quickstart">API Quickstart</a>
                             <a href="mcp-setup.html" data-translate="nav.mcp">MCP Setup</a>
                             <a href="integration-guide.html" data-translate="nav.integration">Integration Guide</a>
                             <a href="examples.html" data-translate="nav.examples">Examples</a>
@@ -71,38 +71,43 @@
     <main class="main-content">
         <div class="container">
             <div class="page-header">
-                <h1>API Quickstart</h1>
-                <p class="page-subtitle">Log in, upload, ask: three calls</p>
+                <h1>Using the App</h1>
+                <p class="page-subtitle">From your first upload to a chat widget on your website</p>
             </div>
 
-            <div class="info-box"><strong>Replace</strong> <code>https://app.raghim.com</code> with your own host if you self-host. All calls below are authenticated as you and only see your own organization's data.</div>
+            <div class="info-box">This guide uses the hosted app at <a href="https://app.raghim.com">app.raghim.com</a>. A self-hosted install has the same screens at your own address. Screen labels may differ slightly between versions.</div>
 
-            <section class="integration-section"><h2>1. Log in</h2>
-            <p>Exchange your username and password for a token (form encoded, not JSON).</p>
-            <div class="code-block"><pre><code>curl -X POST https://app.raghim.com/api/token \
-  -d "username=you@example.com" -d "password=YOUR_PASSWORD"
-# {"access_token": "eyJ...", "token_type": "bearer"}</code></pre></div>
-            <p>Accounts with 2FA enabled receive a challenge response instead and need the extra verification step first. For long-lived automation use an <a href="mcp-setup.html">access token</a> with the MCP endpoint rather than storing a password.</p></section>
+            <section class="integration-section"><h2>1. Upload your documents</h2>
+            <p>Sign in and open the <strong>Upload</strong> tab on the dashboard. Add your files and, if you like, type a collection name to group them. Without a name, Raghim creates a collection for you. Processing (reading, splitting and indexing the text) happens in the background, so a large file can take a few minutes before it is searchable. Scanned documents are read with OCR.</p></section>
 
-            <section class="integration-section"><h2>2. Upload a document</h2>
-            <div class="code-block"><pre><code>curl -X POST https://app.raghim.com/api/documents/upload/background \
-  -H "Authorization: Bearer $TOKEN" \
-  -F "files=@handbook.pdf" \
-  -F "collection_name=my-docs"</code></pre></div>
-            <p>Processing runs in the background (chunking, embedding). Wait until the document shows as processed in the app before asking questions about it.</p></section>
+            <section class="integration-section"><h2>2. Manage collections</h2>
+            <p>Open <strong>Collections</strong> to see everything you have uploaded. From there you can search collections, share one to your team, or delete one. Deleting a collection removes its documents permanently.</p>
+            <p>If you upload a file directly inside the chat, it becomes a temporary collection under <strong>Chat uploads</strong>. Use <strong>Keep as collection</strong> to make it permanent, otherwise it expires.</p></section>
 
-            <section class="integration-section"><h2>3. Ask a question</h2>
-            <div class="code-block"><pre><code>curl -X POST https://app.raghim.com/api/chat/agentic \
-  -H "Authorization: Bearer $TOKEN" -H "Content-Type: application/json" \
-  -d '{"message": "What is our refund policy?", "collections": ["my-docs"]}'
-# {"response": "...", "sources": [...]}</code></pre></div>
-            <p>The answer comes back in <code>response</code>, with the passages it used in <code>sources</code>.</p></section>
+            <section class="integration-section"><h2>3. Chat with your agent</h2>
+            <p>Open <strong>Chat</strong>. Under <strong>Collection Selection</strong>, choose which collections the agent may use, then type your question and press Enter (Shift+Enter for a new line). Ask in English or French.</p>
+            <ul>
+              <li>Answers cite the passages they came from, so you can check them.</li>
+              <li>To mix documents with database data, choose up to 3 tables under <strong>SQL Table Selection</strong>.</li>
+              <li>You can speak your question with the voice button, and export an answer as a PDF.</li>
+              <li>If you have a deployed <a href="first-flow.html">flow</a> set as active, the agent runs that flow instead of the default pipeline.</li>
+            </ul></section>
 
-            <div class="info-box"><strong>Using Claude, Cursor or another AI client?</strong> Skip the raw API and connect through MCP: <a href="mcp-setup.html">MCP setup</a>.</div>
+            <section class="integration-section"><h2>4. Put a chat widget on your website</h2>
+            <p>Open <strong>Widget Manager</strong> and click <strong>Create Widget</strong>, picking the collections it should answer from. Then click <strong>Get Code</strong> and paste the snippet into your site.</p>
+            <p>A widget only loads on approved domains. On the hosted app, use <strong>Get Code</strong> then <strong>Request Domain Whitelisting</strong>. On a self-hosted install, your administrator adds domains to the <code>WIDGET_DOMAINS</code> setting.</p></section>
+
+            <section class="integration-section"><h2>Tips</h2>
+            <ul>
+              <li>Keep one topic per collection. Narrow collections give more focused answers.</li>
+              <li>Name files clearly. Sources are shown by file name.</li>
+              <li>If an answer seems wrong, check the cited sources first. The most common cause is a missing or outdated document.</li>
+            </ul></section>
 
         </div>
-    <div class="container"><nav class="page-nav" aria-label="Page navigation"><span></span><a class="page-nav-next" href="mcp-setup.html"><span data-translate="nav.next">Next</span><strong data-translate="nav.mcp">MCP Setup</strong></a></nav></div>
+    <div class="container"><nav class="page-nav" aria-label="Page navigation"><a class="page-nav-prev" href="what-is-raghim.html"><span data-translate="nav.previous">Previous</span><strong data-translate="nav.what_is">What is Raghim?</strong></a><a class="page-nav-next" href="first-flow.html"><span data-translate="nav.next">Next</span><strong data-translate="nav.first_flow">Your First Flow</strong></a></nav></div>
     </main>
+
 
 
     <footer class="footer">

@@ -19,7 +19,11 @@
       "api_quickstart": "API Quickstart",
       "mcp": "MCP Setup",
       "previous": "Previous",
-      "next": "Next"
+      "next": "Next",
+      "use": "Use Raghim",
+      "what_is": "What is Raghim?",
+      "using_app": "Using the App",
+      "first_flow": "Your First Flow"
     },
     "hero": {
       "title": "Enterprise Agent Platform",
@@ -1743,7 +1747,11 @@
       "api_quickstart": "Démarrage API",
       "mcp": "Configuration MCP",
       "previous": "Précédent",
-      "next": "Suivant"
+      "next": "Suivant",
+      "use": "Utiliser Raghim",
+      "what_is": "Qu'est-ce que Raghim ?",
+      "using_app": "Utiliser l'application",
+      "first_flow": "Votre premier flux"
     },
     "hero": {
       "title": "Plateforme d'agents IA entreprise",

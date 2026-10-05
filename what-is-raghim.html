@@ -3,19 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>API Quickstart - Raghim AI</title>
+    <title>What is Raghim? - Raghim AI</title>
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="icon" type="image/x-icon" href="assets/images/favicon.png">
     <link rel="icon" type="image/png" sizes="192x192" href="assets/images/logo192.png">
     <link rel="icon" type="image/png" sizes="512x512" href="assets/images/logo512.png">
     <link rel="apple-touch-icon" href="assets/images/logo192.png">
-    <meta name="description" content="Log in, upload a document and ask a question with the Raghim API in three calls">
-    <link rel="canonical" href="https://doc.raghim.com/api-quickstart.html">
+    <meta name="description" content="What Raghim is, what you can do with it, and the key terms used in these docs">
+    <link rel="canonical" href="https://doc.raghim.com/what-is-raghim.html">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Raghim AI Documentation">
-    <meta property="og:title" content="API Quickstart - Raghim AI">
-    <meta property="og:description" content="Log in, upload a document and ask a question with the Raghim API in three calls">
-    <meta property="og:url" content="https://doc.raghim.com/api-quickstart.html">
+    <meta property="og:title" content="What is Raghim? - Raghim AI">
+    <meta property="og:description" content="What Raghim is, what you can do with it, and the key terms used in these docs">
+    <meta property="og:url" content="https://doc.raghim.com/what-is-raghim.html">
     <meta property="og:image" content="https://doc.raghim.com/assets/images/logo512.png">
 </head>
 <body>
@@ -28,18 +28,18 @@
                 </div>
                 <div class="nav-menu" id="nav-menu">
                     <a href="index.html" class="nav-link" data-translate="nav.home">Home</a>
-                    <div class="nav-group">
-                        <button type="button" class="nav-link nav-group-btn" aria-haspopup="true" data-translate="nav.use">Use Raghim</button>
+                    <div class="nav-group active">
+                        <button type="button" class="nav-link nav-group-btn active" aria-haspopup="true" data-translate="nav.use">Use Raghim</button>
                         <div class="nav-sub">
-                            <a href="what-is-raghim.html" data-translate="nav.what_is">What is Raghim?</a>
+                            <a href="what-is-raghim.html" class="active" aria-current="page" data-translate="nav.what_is">What is Raghim?</a>
                             <a href="using-raghim.html" data-translate="nav.using_app">Using the App</a>
                             <a href="first-flow.html" data-translate="nav.first_flow">Your First Flow</a>
                         </div>
                     </div>
-                    <div class="nav-group active">
-                        <button type="button" class="nav-link nav-group-btn active" aria-haspopup="true" data-translate="nav.build">Build</button>
+                    <div class="nav-group">
+                        <button type="button" class="nav-link nav-group-btn" aria-haspopup="true" data-translate="nav.build">Build</button>
                         <div class="nav-sub">
-                            <a href="api-quickstart.html" class="active" aria-current="page" data-translate="nav.api_quickstart">API Quickstart</a>
+                            <a href="api-quickstart.html" data-translate="nav.api_quickstart">API Quickstart</a>
                             <a href="mcp-setup.html" data-translate="nav.mcp">MCP Setup</a>
                             <a href="integration-guide.html" data-translate="nav.integration">Integration Guide</a>
                             <a href="examples.html" data-translate="nav.examples">Examples</a>
@@ -71,38 +71,44 @@
     <main class="main-content">
         <div class="container">
             <div class="page-header">
-                <h1>API Quickstart</h1>
-                <p class="page-subtitle">Log in, upload, ask: three calls</p>
+                <h1>What is Raghim?</h1>
+                <p class="page-subtitle">An AI platform that answers from your own documents and data</p>
             </div>
 
-            <div class="info-box"><strong>Replace</strong> <code>https://app.raghim.com</code> with your own host if you self-host. All calls below are authenticated as you and only see your own organization's data.</div>
+            <section class="integration-section"><h2>In one minute</h2>
+            <p>Raghim lets you upload your organization's documents and data, then ask questions in plain language and get answers based on what you uploaded, with the sources shown. You can also build <strong>agent flows</strong>, which are automated assistants that search documents, query databases, send messages and hand off to people, and put a chat assistant on your website or WhatsApp.</p>
+            <p>It runs as a hosted service at <a href="https://app.raghim.com">app.raghim.com</a> or on your own servers, including fully offline.</p></section>
 
-            <section class="integration-section"><h2>1. Log in</h2>
-            <p>Exchange your username and password for a token (form encoded, not JSON).</p>
-            <div class="code-block"><pre><code>curl -X POST https://app.raghim.com/api/token \
-  -d "username=you@example.com" -d "password=YOUR_PASSWORD"
-# {"access_token": "eyJ...", "token_type": "bearer"}</code></pre></div>
-            <p>Accounts with 2FA enabled receive a challenge response instead and need the extra verification step first. For long-lived automation use an <a href="mcp-setup.html">access token</a> with the MCP endpoint rather than storing a password.</p></section>
+            <section class="integration-section"><h2>What you can do with it</h2>
+            <div class="security-grid">
+              <div class="security-card"><h3>Ask your documents</h3><p>Upload files and ask questions in English or French. Answers come from your documents, not from the open internet.</p></div>
+              <div class="security-card"><h3>Automate with flows</h3><p>Chain document search, database queries and messaging into an assistant that runs on its own.</p></div>
+              <div class="security-card"><h3>Embed a chat widget</h3><p>Put an assistant on your website that answers customers from your knowledge base.</p></div>
+              <div class="security-card"><h3>Connect your tools</h3><p>Use Raghim from code through the API, or from Claude, Cursor and Codex through MCP.</p></div>
+            </div></section>
 
-            <section class="integration-section"><h2>2. Upload a document</h2>
-            <div class="code-block"><pre><code>curl -X POST https://app.raghim.com/api/documents/upload/background \
-  -H "Authorization: Bearer $TOKEN" \
-  -F "files=@handbook.pdf" \
-  -F "collection_name=my-docs"</code></pre></div>
-            <p>Processing runs in the background (chunking, embedding). Wait until the document shows as processed in the app before asking questions about it.</p></section>
+            <section class="integration-section"><h2>Key terms</h2>
+            <ul>
+              <li><strong>Collection:</strong> a named group of documents. You choose which collections the assistant may use for a question.</li>
+              <li><strong>Agent:</strong> the chat assistant. It answers from your collections and can also use database tables.</li>
+              <li><strong>Agent flow:</strong> a saved, step-by-step assistant you design on a canvas. It starts at a <em>Start</em> node, runs tools and logic, and ends with a reply.</li>
+              <li><strong>Widget:</strong> an embeddable chat window for your website, powered by a collection or a flow.</li>
+              <li><strong>Deploy:</strong> making a saved flow live, so the Agent and widgets use it.</li>
+              <li><strong>MCP:</strong> an open standard that lets AI tools such as Claude and Cursor connect to outside systems. See <a href="mcp-setup.html">MCP Setup</a>.</li>
+            </ul></section>
 
-            <section class="integration-section"><h2>3. Ask a question</h2>
-            <div class="code-block"><pre><code>curl -X POST https://app.raghim.com/api/chat/agentic \
-  -H "Authorization: Bearer $TOKEN" -H "Content-Type: application/json" \
-  -d '{"message": "What is our refund policy?", "collections": ["my-docs"]}'
-# {"response": "...", "sources": [...]}</code></pre></div>
-            <p>The answer comes back in <code>response</code>, with the passages it used in <code>sources</code>.</p></section>
-
-            <div class="info-box"><strong>Using Claude, Cursor or another AI client?</strong> Skip the raw API and connect through MCP: <a href="mcp-setup.html">MCP setup</a>.</div>
+            <section class="integration-section"><h2>Where to go next</h2>
+            <ul>
+              <li>New here? Follow <a href="using-raghim.html">Using the App</a>.</li>
+              <li>Want to automate something? Try <a href="first-flow.html">Your First Flow</a>.</li>
+              <li>A developer? Start with the <a href="api-quickstart.html">API Quickstart</a>.</li>
+              <li>Installing it yourself? See the <a href="quick-start.html">Self-host Quick Start</a>.</li>
+            </ul></section>
 
         </div>
-    <div class="container"><nav class="page-nav" aria-label="Page navigation"><span></span><a class="page-nav-next" href="mcp-setup.html"><span data-translate="nav.next">Next</span><strong data-translate="nav.mcp">MCP Setup</strong></a></nav></div>
+    <div class="container"><nav class="page-nav" aria-label="Page navigation"><span></span><a class="page-nav-next" href="using-raghim.html"><span data-translate="nav.next">Next</span><strong data-translate="nav.using_app">Using the App</strong></a></nav></div>
     </main>
+
 
 
     <footer class="footer">

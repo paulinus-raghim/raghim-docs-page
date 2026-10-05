@@ -262,7 +262,7 @@ body {
 /* Overview Section */
 .overview-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
     gap: 2rem;
 }
 
@@ -295,7 +295,7 @@ body {
 /* Features Section */
 .features-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
     gap: 2rem;
 }
 
@@ -415,7 +415,7 @@ body {
 /* Deployment Section */
 .deployment-options {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(400px, 100%), 1fr));
     gap: 2rem;
 }
 
@@ -484,7 +484,7 @@ body {
 /* API Section */
 .api-sections {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
     gap: 2rem;
 }
 
@@ -536,7 +536,7 @@ body {
 /* Security Section */
 .security-features {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
     gap: 2rem;
 }
 
@@ -581,7 +581,7 @@ body {
 /* Support Section */
 .support-content {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
     gap: 2rem;
 }
 
@@ -620,7 +620,7 @@ body {
 
 .footer-content {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(250px, 100%), 1fr));
     gap: 2rem;
     margin-bottom: 2rem;
 }
@@ -1180,7 +1180,7 @@ html {
 /* Prerequisites section */
 .prerequisites-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
     gap: 2rem;
     margin-bottom: 2rem;
 }
@@ -1334,7 +1334,7 @@ html {
 /* Cloud options */
 .cloud-options {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(400px, 100%), 1fr));
     gap: 2rem;
     margin-bottom: 2rem;
 }
@@ -1443,7 +1443,7 @@ html {
 /* Troubleshooting */
 .troubleshooting-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
     gap: 2rem;
     margin-bottom: 2rem;
 }
@@ -1716,7 +1716,7 @@ html {
 /* Support options */
 .support-options {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
     gap: 2rem;
     margin-bottom: 2rem;
 }
@@ -1797,7 +1797,7 @@ html {
 
 .api-categories {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(250px, 100%), 1fr));
     gap: 1.5rem;
 }
 
@@ -1828,7 +1828,7 @@ html {
 
 .integration-methods {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr));
     gap: 1.5rem;
 }
 
@@ -1862,7 +1862,7 @@ html {
 /* Security grid */
 .security-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
     gap: 2rem;
     margin-bottom: 2rem;
 }
@@ -1965,3 +1965,35 @@ html {
 #doc-search-results span { display: block; font-size: .8rem; color: var(--text-secondary); }
 #doc-search-results p { padding: .75rem 1rem; margin: 0; color: var(--text-secondary); }
 @media (max-width: 768px) { .doc-search input { width: 85vw; } #doc-search-results { left: 50%; right: auto; transform: translateX(-50%); } }
+
+/* Mobile fixes */
+html, body { overflow-x: hidden; }
+.content, .content-grid > * { min-width: 0; }
+.content img, .content table, .content pre { max-width: 100%; }
+.content pre, .code-block { overflow-x: auto; }
+.content code { overflow-wrap: anywhere; }
+@media (max-width: 1024px) {
+    .content-grid { grid-template-columns: minmax(0, 1fr); gap: 1.5rem; }
+    .sidebar { position: static; }
+}
+@media (max-width: 768px) {
+    .section { padding: 2rem 0; }
+    .page-header { padding: 1.5rem 1rem; }
+    .page-header h1 { font-size: 1.75rem; }
+    .page-subtitle { font-size: 1rem; }
+    .sidebar { padding: 1rem 1.25rem; }
+    .content { padding: 1rem; }
+    .integration-section, .issue-card, .security-card, .prereq-card, .support-card, .cloud-card, .config-section { padding: 1rem; margin-bottom: 1rem; }
+    .integration-section h3, .issue-card h3 { margin-top: 0; }
+    .content h2 { font-size: 1.4rem; }
+    .content table { display: block; overflow-x: auto; }
+    .code-block { padding: .75rem; }
+    .code-block pre { font-size: .8rem; }
+    .page-nav { flex-direction: column; margin: 2rem 0 1rem; }
+    .page-nav a { max-width: 100%; }
+    .nav-menu { max-height: calc(100vh - 70px); overflow-y: auto; align-items: stretch; gap: .25rem; }
+    .nav-menu > a, .nav-group-btn, .nav-sub a { padding: .6rem 1rem; }
+    .nav-group { text-align: center; }
+    .nav-sub a { display: block; }
+    .doc-search input { width: 90%; }
+}

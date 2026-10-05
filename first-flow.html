@@ -3,19 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>API Quickstart - Raghim AI</title>
+    <title>Your First Flow - Raghim AI</title>
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="icon" type="image/x-icon" href="assets/images/favicon.png">
     <link rel="icon" type="image/png" sizes="192x192" href="assets/images/logo192.png">
     <link rel="icon" type="image/png" sizes="512x512" href="assets/images/logo512.png">
     <link rel="apple-touch-icon" href="assets/images/logo192.png">
-    <meta name="description" content="Log in, upload a document and ask a question with the Raghim API in three calls">
-    <link rel="canonical" href="https://doc.raghim.com/api-quickstart.html">
+    <meta name="description" content="Build, test and deploy your first Raghim agent flow">
+    <link rel="canonical" href="https://doc.raghim.com/first-flow.html">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Raghim AI Documentation">
-    <meta property="og:title" content="API Quickstart - Raghim AI">
-    <meta property="og:description" content="Log in, upload a document and ask a question with the Raghim API in three calls">
-    <meta property="og:url" content="https://doc.raghim.com/api-quickstart.html">
+    <meta property="og:title" content="Your First Flow - Raghim AI">
+    <meta property="og:description" content="Build, test and deploy your first Raghim agent flow">
+    <meta property="og:url" content="https://doc.raghim.com/first-flow.html">
     <meta property="og:image" content="https://doc.raghim.com/assets/images/logo512.png">
 </head>
 <body>
@@ -28,18 +28,18 @@
                 </div>
                 <div class="nav-menu" id="nav-menu">
                     <a href="index.html" class="nav-link" data-translate="nav.home">Home</a>
-                    <div class="nav-group">
-                        <button type="button" class="nav-link nav-group-btn" aria-haspopup="true" data-translate="nav.use">Use Raghim</button>
+                    <div class="nav-group active">
+                        <button type="button" class="nav-link nav-group-btn active" aria-haspopup="true" data-translate="nav.use">Use Raghim</button>
                         <div class="nav-sub">
                             <a href="what-is-raghim.html" data-translate="nav.what_is">What is Raghim?</a>
                             <a href="using-raghim.html" data-translate="nav.using_app">Using the App</a>
-                            <a href="first-flow.html" data-translate="nav.first_flow">Your First Flow</a>
+                            <a href="first-flow.html" class="active" aria-current="page" data-translate="nav.first_flow">Your First Flow</a>
                         </div>
                     </div>
-                    <div class="nav-group active">
-                        <button type="button" class="nav-link nav-group-btn active" aria-haspopup="true" data-translate="nav.build">Build</button>
+                    <div class="nav-group">
+                        <button type="button" class="nav-link nav-group-btn" aria-haspopup="true" data-translate="nav.build">Build</button>
                         <div class="nav-sub">
-                            <a href="api-quickstart.html" class="active" aria-current="page" data-translate="nav.api_quickstart">API Quickstart</a>
+                            <a href="api-quickstart.html" data-translate="nav.api_quickstart">API Quickstart</a>
                             <a href="mcp-setup.html" data-translate="nav.mcp">MCP Setup</a>
                             <a href="integration-guide.html" data-translate="nav.integration">Integration Guide</a>
                             <a href="examples.html" data-translate="nav.examples">Examples</a>
@@ -71,38 +71,38 @@
     <main class="main-content">
         <div class="container">
             <div class="page-header">
-                <h1>API Quickstart</h1>
-                <p class="page-subtitle">Log in, upload, ask: three calls</p>
+                <h1>Your First Flow</h1>
+                <p class="page-subtitle">Design an assistant on a canvas, test it, and make it live</p>
             </div>
 
-            <div class="info-box"><strong>Replace</strong> <code>https://app.raghim.com</code> with your own host if you self-host. All calls below are authenticated as you and only see your own organization's data.</div>
+            <div class="info-box"><strong>Flows in one line:</strong> a flow is a saved sequence of steps your agent runs automatically, for example <em>Start, search your documents, write the answer, End</em>.</div>
 
-            <section class="integration-section"><h2>1. Log in</h2>
-            <p>Exchange your username and password for a token (form encoded, not JSON).</p>
-            <div class="code-block"><pre><code>curl -X POST https://app.raghim.com/api/token \
-  -d "username=you@example.com" -d "password=YOUR_PASSWORD"
-# {"access_token": "eyJ...", "token_type": "bearer"}</code></pre></div>
-            <p>Accounts with 2FA enabled receive a challenge response instead and need the extra verification step first. For long-lived automation use an <a href="mcp-setup.html">access token</a> with the MCP endpoint rather than storing a password.</p></section>
+            <section class="integration-section"><h2>1. Pick a starting point</h2>
+            <p>Open <strong>Flows</strong> and choose <strong>New from template</strong>. Good first choices:</p>
+            <ul>
+              <li><strong>Knowledge assistant:</strong> Start, document search, answer, End. Ideal for an internal wiki or HR questions.</li>
+              <li><strong>Data analyst:</strong> Start, database query, answer, End. For tables and summaries without documents.</li>
+              <li><strong>Blank:</strong> only Start and End, for building from scratch.</li>
+            </ul>
+            <p>Prefer to describe it? Use <strong>Generate flow draft</strong> from the More (&#8942;) menu, write what you want in a sentence or two, and click <strong>Generate</strong>. The draft is saved but not live, so you can review it first.</p></section>
 
-            <section class="integration-section"><h2>2. Upload a document</h2>
-            <div class="code-block"><pre><code>curl -X POST https://app.raghim.com/api/documents/upload/background \
-  -H "Authorization: Bearer $TOKEN" \
-  -F "files=@handbook.pdf" \
-  -F "collection_name=my-docs"</code></pre></div>
-            <p>Processing runs in the background (chunking, embedding). Wait until the document shows as processed in the app before asking questions about it.</p></section>
+            <section class="integration-section"><h2>2. Adjust the steps</h2>
+            <p>Use <strong>+ Tool</strong> to add things the flow can do (document search, SQL, MCP tools) and <strong>+ Logic</strong> for guardrails and decisions. Click a step to set it up. For a document search step, you must select the collections it may use. A flow needs exactly one <strong>Start</strong> node, and every step must be connected.</p></section>
 
-            <section class="integration-section"><h2>3. Ask a question</h2>
-            <div class="code-block"><pre><code>curl -X POST https://app.raghim.com/api/chat/agentic \
-  -H "Authorization: Bearer $TOKEN" -H "Content-Type: application/json" \
-  -d '{"message": "What is our refund policy?", "collections": ["my-docs"]}'
-# {"response": "...", "sources": [...]}</code></pre></div>
-            <p>The answer comes back in <code>response</code>, with the passages it used in <code>sources</code>.</p></section>
+            <section class="integration-section"><h2>3. Test before you go live</h2>
+            <p>Save the flow, then send a test message in <strong>Preview</strong>. You will see the agent's reply and can open each step's output to see what it did. Fix anything odd before deploying.</p></section>
 
-            <div class="info-box"><strong>Using Claude, Cursor or another AI client?</strong> Skip the raw API and connect through MCP: <a href="mcp-setup.html">MCP setup</a>.</div>
+            <section class="integration-section"><h2>4. Deploy</h2>
+            <p>Click <strong>Deploy</strong> (you must save first). Once deployed, the Agent and your widgets use this flow. You can also turn on failure alerts, which email you if the flow fails repeatedly, and share a flow with your organization.</p>
+            <div class="info-box"><strong>Safe by design:</strong> editing and drafting never make a flow live. Only a person pressing Deploy does, including when you build flows from an AI assistant over <a href="mcp-setup.html">MCP</a>.</div></section>
+
+            <section class="integration-section"><h2>Next</h2>
+            <p>Run flows from code or an AI assistant: <a href="mcp-setup.html">MCP Setup</a> and the <a href="api-quickstart.html">API Quickstart</a>.</p></section>
 
         </div>
-    <div class="container"><nav class="page-nav" aria-label="Page navigation"><span></span><a class="page-nav-next" href="mcp-setup.html"><span data-translate="nav.next">Next</span><strong data-translate="nav.mcp">MCP Setup</strong></a></nav></div>
+    <div class="container"><nav class="page-nav" aria-label="Page navigation"><a class="page-nav-prev" href="using-raghim.html"><span data-translate="nav.previous">Previous</span><strong data-translate="nav.using_app">Using the App</strong></a><span></span></nav></div>
     </main>
+
 
 
     <footer class="footer">

@@ -2,7 +2,7 @@
 """Regenerate assets/search-index.json and sitemap.xml. Run after editing any page: python3 tools/build-search-index.py"""
 import glob, html, json, re, datetime
 BASE = "https://doc.raghim.com/"
-SECTION = {"api-quickstart":"Build","mcp-setup":"Build","integration-guide":"Build","examples":"Build","api-reference":"Build",
+SECTION = {"what-is-raghim":"Use Raghim","using-raghim":"Use Raghim","first-flow":"Use Raghim","api-quickstart":"Build","mcp-setup":"Build","integration-guide":"Build","examples":"Build","api-reference":"Build",
            "quick-start":"Self-host","deployment-guide":"Self-host","configuration":"Self-host","best-practices":"Self-host","troubleshooting":"Self-host",
            "security-guide":"Security","index":"Home"}
 def text(s):
