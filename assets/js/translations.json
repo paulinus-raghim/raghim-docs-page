@@ -20,7 +20,7 @@
       "subtitle": "Secure AI-Powered Document Intelligence & Knowledge Management",
       "get_started": "Get Started",
       "learn_more": "Learn More",
-      "version": "Version 2.0.5",
+      "version": "Version 2.0.20",
       "enterprise_ready": "Enterprise Ready",
       "offline_deployment": "Offline Deployment"
     },
@@ -1738,7 +1738,7 @@
       "subtitle": "Intelligence Documentaire Sécurisée et Gestion des Connaissances",
       "get_started": "Commencer",
       "learn_more": "En Savoir Plus",
-      "version": "Version 2.0.5",
+      "version": "Version 2.0.20",
       "enterprise_ready": "Prêt pour l'Entreprise",
       "offline_deployment": "Déploiement Hors Ligne"
     },
