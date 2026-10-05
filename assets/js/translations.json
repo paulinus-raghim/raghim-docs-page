@@ -218,7 +218,7 @@
       }
     },
     "support": {
-      "title": "Support & Resources",
+      "title": "Need help?",
       "documentation": "Documentation",
       "documentation_links": {
         "deployment": "Deployment Guide",
@@ -1946,7 +1946,7 @@
       }
     },
     "support": {
-      "title": "Support et Ressources",
+      "title": "Besoin d'aide ?",
       "documentation": "Documentation",
       "documentation_links": {
         "deployment": "Guide de Déploiement",
