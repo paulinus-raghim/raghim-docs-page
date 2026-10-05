@@ -55,10 +55,41 @@
             </div></section>
 
             <section class="integration-section"><h2>2. Add the server to your client</h2>
-            <p>Claude Code:</p>
-            <div class="code-block"><pre><code>claude mcp add --transport http raghim https://app.raghim.com/mcp \
-  --header "Authorization: Bearer rgh_YOUR_TOKEN"</code></pre></div>
-            <p>Other clients: add a remote (streamable HTTP) server with URL <code>https://app.raghim.com/mcp</code> and the same <code>Authorization</code> header. Then ask your assistant to run <code>whoami</code> to confirm the connection.</p></section>
+            <p>Pick your client. Then ask your assistant to run <code>whoami</code> to confirm the connection.</p>
+            <div class="mcp-tabs"><button type="button" class="mcp-tab active" data-tab="claude-code">Claude Code</button><button type="button" class="mcp-tab" data-tab="cursor">Cursor</button><button type="button" class="mcp-tab" data-tab="codex">Codex</button><button type="button" class="mcp-tab" data-tab="desktop">Claude Desktop</button><button type="button" class="mcp-tab" data-tab="other">Other clients</button></div>
+            <div class="mcp-panel active" id="tab-claude-code"><p>One command:</p><div class="code-block"><pre><code>claude mcp add --transport http raghim https://app.raghim.com/mcp \
+  --header "Authorization: Bearer rgh_YOUR_TOKEN"</code></pre></div></div><div class="mcp-panel" id="tab-cursor"><p>Add to <code>~/.cursor/mcp.json</code> (or <code>.cursor/mcp.json</code> in a project):</p><div class="code-block"><pre><code>{
+  "mcpServers": {
+    "raghim": {
+      "url": "https://app.raghim.com/mcp",
+      "headers": { "Authorization": "Bearer rgh_YOUR_TOKEN" }
+    }
+  }
+}</code></pre></div><p>Then enable the server under Cursor Settings &rarr; MCP.</p><div class="warning-box">Configuration format based on Cursor's documented remote-server settings; not yet tested against a live Cursor session.</div></div><div class="mcp-panel" id="tab-codex"><p>Codex CLI and the Codex IDE extension share <code>~/.codex/config.toml</code>. Export your token, then reference it by variable name so it is not stored in the file:</p><div class="code-block"><pre><code>export RAGHIM_TOKEN=rgh_YOUR_TOKEN
+
+# ~/.codex/config.toml
+[mcp_servers.raghim]
+url = "https://app.raghim.com/mcp"
+bearer_token_env_var = "RAGHIM_TOKEN"</code></pre></div><p>Restart Codex, then run <code>/mcp</code> to confirm the server is listed. Older Codex versions may need remote-server support enabled first; if the server does not load, update Codex.</p><div class="warning-box">Configuration based on Codex's documented remote-server settings; not yet tested against a live Codex session.</div></div><div class="mcp-panel" id="tab-desktop"><p>Claude Desktop's connector screen only supports OAuth sign-in, so use the <code>mcp-remote</code> bridge in <code>claude_desktop_config.json</code>:</p><div class="code-block"><pre><code>{
+  "mcpServers": {
+    "raghim": {
+      "command": "npx",
+      "args": ["mcp-remote", "https://app.raghim.com/mcp",
+               "--header", "Authorization: Bearer rgh_YOUR_TOKEN"]
+    }
+  }
+}</code></pre></div><p>Requires Node.js. Claude.ai web connectors are not supported yet (they need OAuth login).</p><div class="warning-box">Not yet tested against a live Claude Desktop session.</div></div><div class="mcp-panel" id="tab-other"><p>VS Code, Windsurf, Cline, Zed and any other client that supports remote MCP servers over <strong>streamable HTTP</strong> with custom headers work the same way. Enter:</p><ul><li>URL: <code>https://app.raghim.com/mcp</code></li><li>Header: <code>Authorization: Bearer rgh_YOUR_TOKEN</code></li></ul><p>Config file names and field names (<code>url</code>, <code>serverUrl</code>, <code>headers</code>) vary by client, so check its MCP docs. Clients that only speak stdio can use the <code>mcp-remote</code> bridge shown under Claude Desktop.</p><div class="warning-box">Generic guidance based on the MCP standard; only tested with the MCP SDK client so far.</div></div></section>
+            <style>
+            .mcp-tabs{display:flex;flex-wrap:wrap;gap:.25rem;border-bottom:1px solid #ddd;margin:1rem 0}
+            .mcp-tab{background:none;border:0;border-bottom:3px solid transparent;padding:.6rem 1rem;cursor:pointer;font:inherit;color:inherit}
+            .mcp-tab.active{border-bottom-color:#1976d2;font-weight:600}
+            .mcp-panel{display:none}.mcp-panel.active{display:block}
+            </style>
+            <script>
+            document.querySelectorAll('.mcp-tab').forEach(function(b){b.onclick=function(){
+              document.querySelectorAll('.mcp-tab,.mcp-panel').forEach(function(e){e.classList.remove('active')});
+              b.classList.add('active');document.getElementById('tab-'+b.dataset.tab).classList.add('active');}});
+            </script>
 
             <section class="integration-section"><h2>3. Tools</h2>
             <ul>
