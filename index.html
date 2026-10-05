@@ -11,6 +11,13 @@
     <link rel="apple-touch-icon" href="assets/images/logo192.png">
     <meta name="description" content="Enterprise AI documentation for Raghim AI RAG System - secure document processing and knowledge management">
     <meta name="keywords" content="RAG, AI, document processing, enterprise, Raghim AI, secure AI">
+    <link rel="canonical" href="https://doc.raghim.com/">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Raghim AI Documentation">
+    <meta property="og:title" content="Raghim AI Enterprise Agent Platform - Documentation">
+    <meta property="og:description" content="Enterprise AI documentation for Raghim AI RAG System - secure document processing and knowledge management">
+    <meta property="og:url" content="https://doc.raghim.com/">
+    <meta property="og:image" content="https://doc.raghim.com/assets/images/logo512.png">
 </head>
 <body>
     <header class="header">
@@ -21,12 +28,29 @@
                     <span class="brand-text">Raghim AI Enterprise</span>
                 </div>
                 <div class="nav-menu" id="nav-menu">
-                    <a href="#overview" class="nav-link" data-translate="nav.home">Overview</a>
-                    <a href="#capabilities" class="nav-link" data-translate="nav.capabilities">Capabilities</a>
-                    <a href="#deployment" class="nav-link" data-translate="nav.deployment">Deployment</a>
-                    <a href="#integration" class="nav-link" data-translate="nav.integration">Integration</a>
-                    <a href="#security" class="nav-link" data-translate="nav.security">Security</a>
-                    <a href="#support" class="nav-link" data-translate="nav.support">Support</a>
+                    <a href="index.html" class="nav-link active" data-translate="nav.home">Home</a>
+                    <div class="nav-group">
+                        <button type="button" class="nav-link nav-group-btn" aria-haspopup="true" data-translate="nav.build">Build</button>
+                        <div class="nav-sub">
+                            <a href="api-quickstart.html" data-translate="nav.api_quickstart">API Quickstart</a>
+                            <a href="mcp-setup.html" data-translate="nav.mcp">MCP Setup</a>
+                            <a href="integration-guide.html" data-translate="nav.integration">Integration Guide</a>
+                            <a href="examples.html" data-translate="nav.examples">Examples</a>
+                            <a href="api-reference.html" data-translate="nav.api">API Reference</a>
+                        </div>
+                    </div>
+                    <div class="nav-group">
+                        <button type="button" class="nav-link nav-group-btn" aria-haspopup="true" data-translate="nav.selfhost">Self-host</button>
+                        <div class="nav-sub">
+                            <a href="quick-start.html" data-translate="nav.quick_start">Self-host Quick Start</a>
+                            <a href="deployment-guide.html" data-translate="nav.deployment">Deployment</a>
+                            <a href="configuration.html" data-translate="nav.configuration">Configuration</a>
+                            <a href="best-practices.html" data-translate="nav.best_practices">Best Practices</a>
+                            <a href="troubleshooting.html" data-translate="nav.troubleshooting">Troubleshooting</a>
+                        </div>
+                    </div>
+                    <a href="security-guide.html" class="nav-link" data-translate="nav.security">Security</a>
+                    <div class="doc-search"><input type="search" id="doc-search" placeholder="Search docs (press /)" aria-label="Search documentation" autocomplete="off"><div id="doc-search-results" hidden></div></div>
                 </div>
                 <div class="nav-toggle" id="nav-toggle">
                     <span class="bar"></span>
@@ -49,8 +73,8 @@
                         <span class="badge" data-translate="hero.offline_deployment">Offline Deployment</span>
                     </div>
                     <div class="hero-actions">
-                        <a href="#deployment" class="btn btn-primary" data-translate="hero.get_started">Start Deployment</a>
-                        <a href="#capabilities" class="btn btn-secondary" data-translate="hero.learn_more">Learn More</a>
+                        <a href="api-quickstart.html" class="btn btn-primary">Build with Raghim</a>
+                        <a href="quick-start.html" class="btn btn-secondary">Self-host Raghim</a>
                     </div>
                 </div>
                 <div class="hero-image">
@@ -62,7 +86,43 @@
                 <strong>Docs Path:</strong> Quick Start -> Configuration -> Deployment Guide -> API/Integration -> Security -> Troubleshooting.
             </div>
 
-        <section id="overview" class="section">
+        <section id="paths" class="section">
+            <div class="container">
+                <h2 class="section-title">Choose your path</h2>
+                <div class="security-grid">
+                    <div class="security-card">
+                        <h3>Build with Raghim</h3>
+                        <p>Use the hosted platform from code or from an AI assistant such as Claude, Cursor or Codex.</p>
+                        <ul>
+                            <li><a href="api-quickstart.html">API Quickstart</a></li>
+                            <li><a href="mcp-setup.html">MCP Setup</a></li>
+                            <li><a href="integration-guide.html">Integration Guide</a></li>
+                            <li><a href="examples.html">Examples</a></li>
+                        </ul>
+                    </div>
+                    <div class="security-card">
+                        <h3>Self-host Raghim</h3>
+                        <p>Run Raghim on your own servers, including fully offline and air-gapped installs.</p>
+                        <ul>
+                            <li><a href="quick-start.html">Self-host Quick Start</a></li>
+                            <li><a href="deployment-guide.html">Deployment Guide</a></li>
+                            <li><a href="configuration.html">Configuration</a></li>
+                            <li><a href="troubleshooting.html">Troubleshooting</a></li>
+                        </ul>
+                    </div>
+                    <div class="security-card">
+                        <h3>Security and compliance</h3>
+                        <p>How data is protected, who can access it, and how it is audited.</p>
+                        <ul>
+                            <li><a href="security-guide.html">Security Guide</a></li>
+                            <li><a href="best-practices.html">Best Practices</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="overview" class="section section-alt">
             <div class="container">
                 <h2 class="section-title" data-translate="overview.title">System Overview</h2>
                 <div class="overview-grid">
@@ -420,6 +480,7 @@
     </footer>
 
     <script src="assets/js/script.js"></script>
+    <script src="assets/js/search.js"></script>
     <script src="assets/js/simple-lang-switcher.js"></script>
 </body>
 </html>

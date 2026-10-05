@@ -190,28 +190,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize copy buttons
     addCopyButtons();
 
-    // Search functionality (for future implementation)
-    function initializeSearch() {
-        const searchInput = document.getElementById('search-input');
-        if (searchInput) {
-            searchInput.addEventListener('input', function() {
-                const query = this.value.toLowerCase();
-                const searchableElements = document.querySelectorAll('.feature-item, .overview-card, .api-section');
-                
-                searchableElements.forEach(element => {
-                    const text = element.textContent.toLowerCase();
-                    if (text.includes(query)) {
-                        element.style.display = 'block';
-                    } else {
-                        element.style.display = 'none';
-                    }
-                });
-            });
-        }
-    }
-
-    // Initialize search
-    initializeSearch();
 
     // Theme toggle (for future dark mode implementation)
     function initializeThemeToggle() {

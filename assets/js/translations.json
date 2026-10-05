@@ -4,16 +4,22 @@
       "home": "Home",
       "capabilities": "Capabilities",
       "deployment": "Deployment",
-      "integration": "Integration",
+      "integration": "Integration Guide",
       "security": "Security",
       "support": "Support",
       "api": "API Reference",
       "troubleshooting": "Troubleshooting",
       "best_practices": "Best Practices",
-      "quick_start": "Quick Start",
+      "quick_start": "Self-host Quick Start",
       "configuration": "Configuration",
       "examples": "Examples",
-      "brand": "Raghim AI Enterprise"
+      "brand": "Raghim AI Enterprise",
+      "build": "Build",
+      "selfhost": "Self-host",
+      "api_quickstart": "API Quickstart",
+      "mcp": "MCP Setup",
+      "previous": "Previous",
+      "next": "Next"
     },
     "hero": {
       "title": "Enterprise Agent Platform",
@@ -975,12 +981,12 @@
     },
     "quick_start": {
       "meta": {
-        "title": "Quick Start Guide - Raghim AI Enterprise Agent Platform",
+        "title": "Self-host Quick Start - Raghim AI Enterprise Agent Platform",
         "description": "Quick start guide for Raghim AI Enterprise Agent Platform - get up and running in minutes"
       },
       "header": {
-        "title": "Quick Start Guide",
-        "subtitle": "Get Raghim AI Enterprise Agent Platform up and running in minutes"
+        "title": "Self-host Quick Start",
+        "subtitle": "Install Raghim on your own infrastructure in minutes. Looking to use the hosted app or connect an AI assistant instead? See the API Quickstart or MCP Setup."
       },
       "toc": {
         "title": "Quick Start Steps",
@@ -1722,16 +1728,22 @@
       "home": "Accueil",
       "capabilities": "Capacités",
       "deployment": "Déploiement",
-      "integration": "Intégration",
+      "integration": "Guide d'intégration",
       "security": "Sécurité",
       "support": "Support",
       "api": "Référence API",
       "troubleshooting": "Dépannage",
       "best_practices": "Meilleures Pratiques",
-      "quick_start": "Démarrage Rapide",
+      "quick_start": "Démarrage rapide auto-hébergé",
       "configuration": "Configuration",
       "examples": "Exemples",
-      "brand": "Raghim AI Enterprise"
+      "brand": "Raghim AI Enterprise",
+      "build": "Développer",
+      "selfhost": "Auto-hébergement",
+      "api_quickstart": "Démarrage API",
+      "mcp": "Configuration MCP",
+      "previous": "Précédent",
+      "next": "Suivant"
     },
     "hero": {
       "title": "Plateforme d'agents IA entreprise",
@@ -2696,11 +2708,11 @@
     },
     "quick_start": {
       "meta": {
-        "title": "Guide de Démarrage Rapide - Plateforme d'agents IA entreprise Raghim AI",
+        "title": "Démarrage rapide auto-hébergé - Raghim AI Enterprise Agent Platform",
         "description": "Guide de démarrage rapide pour le Plateforme d'agents IA entreprise Raghim AI - opérationnel en quelques minutes"
       },
       "header": {
-        "title": "Guide de Démarrage Rapide",
+        "title": "Démarrage rapide auto-hébergé",
         "subtitle": "Mettez le Plateforme d'agents IA entreprise Raghim AI en marche en quelques minutes"
       },
       "toc": {

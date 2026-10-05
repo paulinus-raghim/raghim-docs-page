@@ -7,6 +7,13 @@
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="icon" type="image/png" sizes="192x192" href="assets/images/logo192.png">
     <meta name="description" content="Enterprise deployment guide for Raghim AI Enterprise Agent Platform - offline and cloud deployment options">
+    <link rel="canonical" href="https://doc.raghim.com/deployment-guide.html">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Raghim AI Documentation">
+    <meta property="og:title" content="Deployment Guide - Raghim AI Enterprise Agent Platform">
+    <meta property="og:description" content="Enterprise deployment guide for Raghim AI Enterprise Agent Platform - offline and cloud deployment options">
+    <meta property="og:url" content="https://doc.raghim.com/deployment-guide.html">
+    <meta property="og:image" content="https://doc.raghim.com/assets/images/logo512.png">
 </head>
 <body>
     <header class="header">
@@ -18,10 +25,28 @@
                 </div>
                 <div class="nav-menu" id="nav-menu">
                     <a href="index.html" class="nav-link" data-translate="nav.home">Home</a>
-                    <a href="deployment-guide.html" class="nav-link active" data-translate="nav.deployment">Deployment</a>
-                    <a href="api-reference.html" class="nav-link" data-translate="nav.api">API Reference</a>
-                    <a href="troubleshooting.html" class="nav-link" data-translate="nav.troubleshooting">Troubleshooting</a>
+                    <div class="nav-group">
+                        <button type="button" class="nav-link nav-group-btn" aria-haspopup="true" data-translate="nav.build">Build</button>
+                        <div class="nav-sub">
+                            <a href="api-quickstart.html" data-translate="nav.api_quickstart">API Quickstart</a>
+                            <a href="mcp-setup.html" data-translate="nav.mcp">MCP Setup</a>
+                            <a href="integration-guide.html" data-translate="nav.integration">Integration Guide</a>
+                            <a href="examples.html" data-translate="nav.examples">Examples</a>
+                            <a href="api-reference.html" data-translate="nav.api">API Reference</a>
+                        </div>
+                    </div>
+                    <div class="nav-group active">
+                        <button type="button" class="nav-link nav-group-btn active" aria-haspopup="true" data-translate="nav.selfhost">Self-host</button>
+                        <div class="nav-sub">
+                            <a href="quick-start.html" data-translate="nav.quick_start">Self-host Quick Start</a>
+                            <a href="deployment-guide.html" class="active" aria-current="page" data-translate="nav.deployment">Deployment</a>
+                            <a href="configuration.html" data-translate="nav.configuration">Configuration</a>
+                            <a href="best-practices.html" data-translate="nav.best_practices">Best Practices</a>
+                            <a href="troubleshooting.html" data-translate="nav.troubleshooting">Troubleshooting</a>
+                        </div>
+                    </div>
                     <a href="security-guide.html" class="nav-link" data-translate="nav.security">Security</a>
+                    <div class="doc-search"><input type="search" id="doc-search" placeholder="Search docs (press /)" aria-label="Search documentation" autocomplete="off"><div id="doc-search-results" hidden></div></div>
                 </div>
                 <div class="nav-toggle" id="nav-toggle">
                     <span class="bar"></span>
@@ -519,6 +544,7 @@ docker-compose -f docker-compose/docker-compose.yml logs -f</code></pre>
                 </div>
             </div>
         </div>
+    <div class="container"><nav class="page-nav" aria-label="Page navigation"><a class="page-nav-prev" href="quick-start.html"><span data-translate="nav.previous">Previous</span><strong data-translate="nav.quick_start">Self-host Quick Start</strong></a><a class="page-nav-next" href="configuration.html"><span data-translate="nav.next">Next</span><strong data-translate="nav.configuration">Configuration</strong></a></nav></div>
     </main>
 
     <footer class="footer">
@@ -553,6 +579,7 @@ docker-compose -f docker-compose/docker-compose.yml logs -f</code></pre>
     </footer>
 
     <script src="assets/js/script.js"></script>
+    <script src="assets/js/search.js"></script>
     <script src="assets/js/simple-lang-switcher.js"></script>
 </body>
 </html>

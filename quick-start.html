@@ -3,13 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title data-translate="quick_start.meta.title">Quick Start Guide - Raghim AI Enterprise Agent Platform</title>
+    <title data-translate="quick_start.meta.title">Self-host Quick Start - Raghim AI Enterprise Agent Platform</title>
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="icon" type="image/x-icon" href="assets/images/favicon.png">
     <link rel="icon" type="image/png" sizes="192x192" href="assets/images/logo192.png">
     <link rel="icon" type="image/png" sizes="512x512" href="assets/images/logo512.png">
     <link rel="apple-touch-icon" href="assets/images/logo192.png">
     <meta name="description" content="Quick start guide for Raghim AI Enterprise Agent Platform - get up and running in minutes" data-translate="quick_start.meta.description">
+    <link rel="canonical" href="https://doc.raghim.com/quick-start.html">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Raghim AI Documentation">
+    <meta property="og:title" content="Self-host Quick Start - Raghim AI Enterprise Agent Platform">
+    <meta property="og:description" content="Quick start guide for Raghim AI Enterprise Agent Platform - get up and running in minutes">
+    <meta property="og:url" content="https://doc.raghim.com/quick-start.html">
+    <meta property="og:image" content="https://doc.raghim.com/assets/images/logo512.png">
 </head>
 <body>
     <header class="header">
@@ -21,10 +28,28 @@
                 </div>
                 <div class="nav-menu" id="nav-menu">
                     <a href="index.html" class="nav-link" data-translate="nav.home">Home</a>
-                    <a href="deployment-guide.html" class="nav-link" data-translate="nav.deployment">Deployment</a>
-                    <a href="integration-guide.html" class="nav-link" data-translate="nav.integration">Integration</a>
-                    <a href="troubleshooting.html" class="nav-link" data-translate="nav.troubleshooting">Troubleshooting</a>
+                    <div class="nav-group">
+                        <button type="button" class="nav-link nav-group-btn" aria-haspopup="true" data-translate="nav.build">Build</button>
+                        <div class="nav-sub">
+                            <a href="api-quickstart.html" data-translate="nav.api_quickstart">API Quickstart</a>
+                            <a href="mcp-setup.html" data-translate="nav.mcp">MCP Setup</a>
+                            <a href="integration-guide.html" data-translate="nav.integration">Integration Guide</a>
+                            <a href="examples.html" data-translate="nav.examples">Examples</a>
+                            <a href="api-reference.html" data-translate="nav.api">API Reference</a>
+                        </div>
+                    </div>
+                    <div class="nav-group active">
+                        <button type="button" class="nav-link nav-group-btn active" aria-haspopup="true" data-translate="nav.selfhost">Self-host</button>
+                        <div class="nav-sub">
+                            <a href="quick-start.html" class="active" aria-current="page" data-translate="nav.quick_start">Self-host Quick Start</a>
+                            <a href="deployment-guide.html" data-translate="nav.deployment">Deployment</a>
+                            <a href="configuration.html" data-translate="nav.configuration">Configuration</a>
+                            <a href="best-practices.html" data-translate="nav.best_practices">Best Practices</a>
+                            <a href="troubleshooting.html" data-translate="nav.troubleshooting">Troubleshooting</a>
+                        </div>
+                    </div>
                     <a href="security-guide.html" class="nav-link" data-translate="nav.security">Security</a>
+                    <div class="doc-search"><input type="search" id="doc-search" placeholder="Search docs (press /)" aria-label="Search documentation" autocomplete="off"><div id="doc-search-results" hidden></div></div>
                 </div>
                 <div class="nav-toggle" id="nav-toggle">
                     <span class="bar"></span>
@@ -38,8 +63,8 @@
     <main class="main-content">
         <div class="container">
             <div class="page-header">
-                <h1 data-translate="quick_start.header.title">Quick Start Guide</h1>
-                <p class="page-subtitle" data-translate="quick_start.header.subtitle">Get Raghim AI Enterprise Agent Platform up and running in minutes</p>
+                <h1 data-translate="quick_start.header.title">Self-host Quick Start</h1>
+                <p class="page-subtitle" data-translate="quick_start.header.subtitle">Install Raghim on your own infrastructure in minutes. Looking to use the hosted app or connect an AI assistant instead? See the <a href="api-quickstart.html">API Quickstart</a> or <a href="mcp-setup.html">MCP Setup</a>.</p>
             </div>
 
             <div class="info-box" style="margin-top:1.5rem;">
@@ -277,6 +302,7 @@ curl -I https://&lt;app-domain&gt;</code></pre>
                 </div>
             </div>
         </div>
+    <div class="container"><nav class="page-nav" aria-label="Page navigation"><span></span><a class="page-nav-next" href="deployment-guide.html"><span data-translate="nav.next">Next</span><strong data-translate="nav.deployment">Deployment</strong></a></nav></div>
     </main>
 
     <footer class="footer">
@@ -311,6 +337,7 @@ curl -I https://&lt;app-domain&gt;</code></pre>
     </footer>
 
     <script src="assets/js/script.js"></script>
+    <script src="assets/js/search.js"></script>
     <script src="assets/js/simple-lang-switcher.js"></script>
 </body>
 </html>
