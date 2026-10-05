@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MCP Setup - Raghim AI</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="icon" type="image/x-icon" href="assets/images/favicon.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="assets/images/logo192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="assets/images/logo512.png">
+    <link rel="apple-touch-icon" href="assets/images/logo192.png">
+    <meta name="description" content="Connect Claude, Cursor and other MCP clients to Raghim knowledge bases and flows">
+</head>
+<body>
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-brand">
+                    <img src="assets/images/logo192.png" alt="Raghim AI Logo" class="logo">
+                    <span class="brand-text" data-translate="nav.brand">Raghim AI Enterprise</span>
+                </div>
+                <div class="nav-menu" id="nav-menu">
+                    <a href="index.html" class="nav-link" data-translate="nav.home">Home</a>
+                    <a href="deployment-guide.html" class="nav-link" data-translate="nav.deployment">Deployment</a>
+                    <a href="integration-guide.html" class="nav-link" data-translate="nav.integration">Integration</a>
+                    <a href="troubleshooting.html" class="nav-link" data-translate="nav.troubleshooting">Troubleshooting</a>
+                    <a href="security-guide.html" class="nav-link" data-translate="nav.security">Security</a>
+                    <a href="api-quickstart.html" class="nav-link">API Quickstart</a>
+                    <a href="mcp-setup.html" class="nav-link">MCP</a>
+                </div>
+                <div class="nav-toggle" id="nav-toggle">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        <div class="container">
+            <div class="page-header">
+                <h1>MCP Setup</h1>
+                <p class="page-subtitle">Use Raghim from Claude, Cursor and other MCP clients</p>
+            </div>
+
+            <div class="info-box"><strong>What this does:</strong> connects Claude Code, Claude Desktop, Cursor and other MCP clients to your Raghim knowledge bases and agent flows. Your admin must have enabled the MCP server (<code>MCP_SERVER_ENABLED=true</code> on self-hosted installs).</div>
+
+            <section class="integration-section"><h2>1. Create an access token</h2>
+            <p>In Raghim open <strong>Security Settings &rarr; MCP access tokens</strong>, name the token, pick scopes and an expiry, and copy it. It starts with <code>rgh_</code> and is shown <strong>once</strong>. Tokens belong to you, carry your organization and role, and can be revoked at any time.</p>
+            <div class="security-grid">
+              <div class="security-card"><h3>read</h3><p>List and search your collections, list and inspect flows.</p></div>
+              <div class="security-card"><h3>run</h3><p>Run flows you own that are marked MCP-safe.</p></div>
+              <div class="security-card"><h3>build</h3><p>Draft and edit flows. Nothing is ever deployed from MCP.</p></div>
+            </div></section>
+
+            <section class="integration-section"><h2>2. Add the server to your client</h2>
+            <p>Claude Code:</p>
+            <div class="code-block"><pre><code>claude mcp add --transport http raghim https://app.raghim.com/mcp \
+  --header "Authorization: Bearer rgh_YOUR_TOKEN"</code></pre></div>
+            <p>Other clients: add a remote (streamable HTTP) server with URL <code>https://app.raghim.com/mcp</code> and the same <code>Authorization</code> header. Then ask your assistant to run <code>whoami</code> to confirm the connection.</p></section>
+
+            <section class="integration-section"><h2>3. Tools</h2>
+            <ul>
+              <li><code>whoami</code>: who the token acts as, and its scopes.</li>
+              <li><code>list_collections</code>, <code>search_collection</code>: browse and search your knowledge bases. Your client's own model writes the answer from the returned passages.</li>
+              <li><code>list_flows</code>, <code>get_flow</code>: inspect your agent flows (<code>get_flow</code> includes the graph with a build-scope token).</li>
+              <li><code>run_flow</code>: run a flow server-side. Only flows you own and have marked <strong>MCP-safe</strong> can run, so an assistant cannot trigger a flow that sends messages or touches outside systems unless you allowed it.</li>
+              <li><code>draft_flow</code>, <code>update_flow</code>: create or edit a flow. Drafts are saved undeployed, live flows cannot be edited, and an edit never grants MCP-safe.</li>
+              <li><code>deploy_flow</code>: never deploys. It points you to the flow editor, where a person presses Deploy.</li>
+            </ul></section>
+
+            <section class="integration-section"><h2>4. Credits and your own OpenAI key</h2>
+            <p>On plans with credits, search costs 1 credit and flow runs and drafts use credits as in the app. Org admins can supply their own OpenAI key under <strong>Security Settings &rarr; LLM key</strong>: flow runs and drafts then use that key for generation. If the key fails, the call fails with a clear error and never falls back to the platform key. Embeddings always stay on the platform, and with your own key your prompts go to OpenAI under your account.</p></section>
+
+            <section class="integration-section"><h2>5. Self-hosted notes</h2>
+            <p>Use your own host in the URL. Cloud-hosted clients such as claude.ai connectors must be able to reach it over the internet. An air-gapped install can only be used from local clients on the same network.</p></section>
+
+        </div>
+    </main>
+
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <img src="assets/images/logo192.png" alt="Raghim AI Logo" class="footer-logo">
+                    <p data-translate="footer.brand">Raghim AI Enterprise Agent Platform</p>
+                </div>
+                <div class="footer-section">
+                    <h4 data-translate="footer.documentation">Documentation</h4>
+                    <ul>
+                        <li><a href="index.html" data-translate="nav.home">Home</a></li>
+                        <li><a href="deployment-guide.html" data-translate="footer.documentation_links.deployment_guide">Deployment Guide</a></li>
+                        <li><a href="integration-guide.html" data-translate="footer.documentation_links.integration_guide">Integration Guide</a></li>
+                        <li><a href="troubleshooting.html" data-translate="footer.documentation_links.troubleshooting">Troubleshooting</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4 data-translate="footer.support">Support</h4>
+                    <ul>
+                        <li data-translate="footer.support_links.contact">Email: contact@raghim.com</li>
+                        <li data-translate="footer.support_links.technical_support">Technical Support</li>
+                        <li data-translate="footer.support_links.enterprise_support">Enterprise Support</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p data-translate="footer.copyright">&copy; 2026 Raghim SARL. All rights reserved. Enterprise Agent Platform v2.0.20</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/script.js"></script>
+    <script src="assets/js/simple-lang-switcher.js"></script>
+</body>
+</html>
+
+
+
+

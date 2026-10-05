@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Quickstart - Raghim AI</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="icon" type="image/x-icon" href="assets/images/favicon.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="assets/images/logo192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="assets/images/logo512.png">
+    <link rel="apple-touch-icon" href="assets/images/logo192.png">
+    <meta name="description" content="Log in, upload a document and ask a question with the Raghim API in three calls">
+</head>
+<body>
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-brand">
+                    <img src="assets/images/logo192.png" alt="Raghim AI Logo" class="logo">
+                    <span class="brand-text" data-translate="nav.brand">Raghim AI Enterprise</span>
+                </div>
+                <div class="nav-menu" id="nav-menu">
+                    <a href="index.html" class="nav-link" data-translate="nav.home">Home</a>
+                    <a href="deployment-guide.html" class="nav-link" data-translate="nav.deployment">Deployment</a>
+                    <a href="integration-guide.html" class="nav-link" data-translate="nav.integration">Integration</a>
+                    <a href="troubleshooting.html" class="nav-link" data-translate="nav.troubleshooting">Troubleshooting</a>
+                    <a href="security-guide.html" class="nav-link" data-translate="nav.security">Security</a>
+                    <a href="api-quickstart.html" class="nav-link">API Quickstart</a>
+                    <a href="mcp-setup.html" class="nav-link">MCP</a>
+                </div>
+                <div class="nav-toggle" id="nav-toggle">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        <div class="container">
+            <div class="page-header">
+                <h1>API Quickstart</h1>
+                <p class="page-subtitle">Log in, upload, ask: three calls</p>
+            </div>
+
+            <div class="info-box"><strong>Replace</strong> <code>https://app.raghim.com</code> with your own host if you self-host. All calls below are authenticated as you and only see your own organization's data.</div>
+
+            <section class="integration-section"><h2>1. Log in</h2>
+            <p>Exchange your username and password for a token (form encoded, not JSON).</p>
+            <div class="code-block"><pre><code>curl -X POST https://app.raghim.com/api/token \
+  -d "username=you@example.com" -d "password=YOUR_PASSWORD"
+# {"access_token": "eyJ...", "token_type": "bearer"}</code></pre></div>
+            <p>Accounts with 2FA enabled receive a challenge response instead and need the extra verification step first. For long-lived automation use an <a href="mcp-setup.html">access token</a> with the MCP endpoint rather than storing a password.</p></section>
+
+            <section class="integration-section"><h2>2. Upload a document</h2>
+            <div class="code-block"><pre><code>curl -X POST https://app.raghim.com/api/documents/upload/background \
+  -H "Authorization: Bearer $TOKEN" \
+  -F "files=@handbook.pdf" \
+  -F "collection_name=my-docs"</code></pre></div>
+            <p>Processing runs in the background (chunking, embedding). Wait until the document shows as processed in the app before asking questions about it.</p></section>
+
+            <section class="integration-section"><h2>3. Ask a question</h2>
+            <div class="code-block"><pre><code>curl -X POST https://app.raghim.com/api/chat/agentic \
+  -H "Authorization: Bearer $TOKEN" -H "Content-Type: application/json" \
+  -d '{"message": "What is our refund policy?", "collections": ["my-docs"]}'
+# {"response": "...", "sources": [...]}</code></pre></div>
+            <p>The answer comes back in <code>response</code>, with the passages it used in <code>sources</code>.</p></section>
+
+            <div class="info-box"><strong>Using Claude, Cursor or another AI client?</strong> Skip the raw API and connect through MCP: <a href="mcp-setup.html">MCP setup</a>.</div>
+
+        </div>
+    </main>
+
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <img src="assets/images/logo192.png" alt="Raghim AI Logo" class="footer-logo">
+                    <p data-translate="footer.brand">Raghim AI Enterprise Agent Platform</p>
+                </div>
+                <div class="footer-section">
+                    <h4 data-translate="footer.documentation">Documentation</h4>
+                    <ul>
+                        <li><a href="index.html" data-translate="nav.home">Home</a></li>
+                        <li><a href="deployment-guide.html" data-translate="footer.documentation_links.deployment_guide">Deployment Guide</a></li>
+                        <li><a href="integration-guide.html" data-translate="footer.documentation_links.integration_guide">Integration Guide</a></li>
+                        <li><a href="troubleshooting.html" data-translate="footer.documentation_links.troubleshooting">Troubleshooting</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4 data-translate="footer.support">Support</h4>
+                    <ul>
+                        <li data-translate="footer.support_links.contact">Email: contact@raghim.com</li>
+                        <li data-translate="footer.support_links.technical_support">Technical Support</li>
+                        <li data-translate="footer.support_links.enterprise_support">Enterprise Support</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p data-translate="footer.copyright">&copy; 2026 Raghim SARL. All rights reserved. Enterprise Agent Platform v2.0.20</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/script.js"></script>
+    <script src="assets/js/simple-lang-switcher.js"></script>
+</body>
+</html>
+
+
+
+
